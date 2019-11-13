@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   def index 
     @user = User.all  
   end
-  
+
   def new 
     @user = User.new(user_params)
   end
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       login!(@user)
       render :show 
     else   
-      render json: @user.errors.full_messages, status: 401
+      render json: @user.errors.full_messages, status: 422
     end
   end
 

@@ -1,10 +1,10 @@
-export const postUser = user => (
-  $.ajax({
+export const postUser = user => {
+  return $.ajax({
     url: `/api/users`,
     method: 'POST',
     data: { user }
   })
-);
+};
 
 export const postSession = user => (
   $.ajax({
@@ -20,10 +20,3 @@ export const deleteSession = () => (
     method: 'DELETE'
   })
 );
-
-export const fetchAllUsers = () => (
-  $.ajax({
-    url: `/api/users`,
-    method: 'GET'
-  })
-)

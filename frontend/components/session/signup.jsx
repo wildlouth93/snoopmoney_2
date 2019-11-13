@@ -20,17 +20,33 @@ class Signup extends React.Component {
     }
   }
 
+  renderErrors() {
+    return (
+      <ul>
+        {
+          this.props.errors.map((error, i) => (
+            <li key={`error-${i}`}> 
+              {error}
+            </li>
+          ))
+      }
+      </ul>
+    )
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.createNewUser(this.state)
       .then( () => this.props.history.push('/')) 
   }
 
-  render() {
+  render() { 
     return (
       <div className="session-form">
-        <h2>Sign Up</h2>
+        <h1>Make Your Money Move</h1>
+        <h2>SnoopMoney lets you invest in companies you love, commission-free.</h2>
         <form>
+          {this.renderErrors()}
           <label>Email:
             <input 
               type="email" 
@@ -72,7 +88,7 @@ class Signup extends React.Component {
             />
           </label>
           <br/>
-          <button onClick={this.handleSubmit}>Signup</button>
+          <button onClick={this.handleSubmit}>Continue</button>
         </form>
       </div>
     )
