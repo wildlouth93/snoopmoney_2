@@ -1,14 +1,12 @@
 .log-in-form {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red; 
   font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
   height: 100vh; 
 }
 
 .log-in-pic, .form-component {
   align-items: center;
-  border: 1px solid red; 
   margin-bottom: 0px; 
 }
 
@@ -22,20 +20,17 @@
 }
 
 .log-in-pic {
-  border: 1px solid red; 
 }
 
 .log-in-form .form-component {
-  border: 1px solid red; 
   height: 100%; 
 }
 
 .log-in-form .form-component h1 {
-  border: 1px solid red; 
 }
 
 .log-in-form .form-component form {
- border: 1px solid red; 
+
 }
 
 .log-in-form .form-component {
@@ -84,4 +79,12 @@
 .log-in-form .form-component form .btn:hover {
   color: white; 
   background-color: $rh_green3;
+}
+
+.log-in-form .errors-pop-up { 
+  background-color: #ff9999;
+  outline: 0; 
+  width: 60%;
+  color: white; 
+  border-radius: 5px;
 }

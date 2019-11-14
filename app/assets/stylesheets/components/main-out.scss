@@ -1,7 +1,6 @@
 .main-out {
   display: flex;
   justify-content: flex-end;
-  border: 1px solid red; 
   background-color: $rh_green;
   width: 100%; 
   text-align: center; 
@@ -11,13 +10,11 @@
 .main-out-left, .main-out-right {
   display: flex;
   align-items: center;
-  border: 1px solid #ff0000; 
   flex-wrap: wrap; 
 }
 
 .main-out .intro-pic {
   width: 100%; 
-  border: 1px solid red; 
 }
 
 .main-out-left {
@@ -27,7 +24,6 @@
 .main-out h1 {
   font-weight: 700;
   font-size: 62px; 
-  border: 1px solid red; 
   margin: 20px;
   padding: 20px; 
   width: 100%; 
@@ -37,7 +33,6 @@
   font-size: 24px;
   font-weight: 300px; 
   line-height: 36px;  
-  border: 1px solid red;
   margin: 20px; 
   padding: 20px; 
   width: 100%;

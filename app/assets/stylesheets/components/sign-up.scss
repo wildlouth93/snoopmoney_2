@@ -1,37 +1,33 @@
 .sign-up-form {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red; 
   font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-  height: 100vh; 
+  height: 100vh;  
 }
 
 .sign-up-pic, .form-component {
   align-items: center;
-  border: 1px solid red; 
   margin-bottom: 0px; 
 }
 
 .sign-up-pic {
   width: 33%; 
   height: 100%;
-  border: 1px solid red; 
 }
 
 .sign-up-form img {
   width: 100%; 
-  border: 1px solid red; 
   height: 40%;
 }
 
 .sign-up-form .form-component {
   width: 67%; 
   height: 100%; 
+  align-content: center;
 }
 
 .sign-up-form .form-component h1, p {
-  text-align: center;
-  border: 1px solid red; 
+  text-align: center; 
 }
 
 .sign-up-form .form-component h1 {
@@ -43,41 +39,67 @@
 }
 
 .sign-up-form .form-component .form-box {
-  border: 1px solid red; 
-  display: flex;
+  display: block;
   flex-wrap: wrap; 
+  width: 100%;
   align-content: center;
 }
 
-.sign-up-form .form-component .form-box input {
-  border: 1px solid red; 
-  display: flex; 
-  flex-wrap: wrap; 
+.sign-up-form .form-component .form-box input { 
+  margin: 10px; 
+  padding: 5px; 
+  width: 60%;
 }
 
 .sign-up-form .form-component form label {
-  border: 1px solid red; 
-  width: 50%;
+  width: 60%;
 }
+.sign-up-form .form-component form .first_name {
+  width: 30%;
+}
+
+.sign-up-form .form-component form .last_name {
+  width: 30%;
+}
+
 
 .sign-up-form .form-component form input {
   border-radius: 5px;
   border: none; 
   background-color: whitesmoke;
-  width: 80%; 
+  width: 100%; 
   height: 20px; 
   border: 1px solid transparent; 
-  align-items: center;
 }
 
 .sign-up-form .form-component form .btn {
   color: white; 
   height: 40px;
-  width: 60px; 
+  width: 60%; 
   display: flex;
+  text-align: center;
 }
 
 .sign-up-form .form-component form .btn:hover {
   color: white; 
   background-color: $rh_green3;
+}
+
+.sign-up-form .form-component form input:hover {
+  border: 1px solid lightgray; 
+  background-color: white;
+}
+
+.sign-up-form .form-component form input:focus {
+  border: 1px solid $rh_green; 
+  background-color: white;
+  outline: 0; 
+}
+
+.sign-up-form .errors-pop-up { 
+  background-color: #ff9999;
+  outline: 0; 
+  width: 60%;
+  color: white; 
+  border-radius: 5px;
 }

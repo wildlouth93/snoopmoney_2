@@ -48,7 +48,7 @@ class Signup extends React.Component {
           <p>Robinhood lets you invest in companies you love, commission-free.</p>
           <form className="form-box">
             {this.renderErrors()}
-            <label>
+            <label className="first_name">
                 <input 
                   placeholder="First Name"
                   type="text"
@@ -57,7 +57,7 @@ class Signup extends React.Component {
                 />
             </label>
             <br/>
-            <label>
+            <label className="last_name">
                 <input
                 placeholder="Last Name"
                 type="text"
