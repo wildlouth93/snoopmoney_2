@@ -47,7 +47,6 @@ class Login extends React.Component {
         <div className="form-component">
           <form>
             <h2>Welcome to Robinhood</h2>
-            {this.renderErrors()}
             <label>Email
               <br/>
               <input
@@ -67,6 +66,7 @@ class Login extends React.Component {
             </label>
             <br/>
             <button className="btn" onClick={this.handleSubmit}>Sign In</button>
+            {this.renderErrors()}
           </form>
           </div>
       </div>

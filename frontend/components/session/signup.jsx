@@ -47,35 +47,27 @@ class Signup extends React.Component {
           <h1>Make Your Money Move</h1>
           <p>Robinhood lets you invest in companies you love, commission-free.</p>
           <form className="form-box">
-            {this.renderErrors()}
-            <label className="first_name">
                 <input 
                   placeholder="First Name"
                   type="text"
                   value={this.state.first_name}
                   onChange={this.handleInput('first_name')}
                 />
-            </label>
             <br/>
-            <label className="last_name">
                 <input
                 placeholder="Last Name"
                 type="text"
                 value={this.state.last_name}
                 onChange={this.handleInput('last_name')}
               />
-            </label>
             <br/>
-            <label>
               <input
                 placeholder="Email"
                 type="email"
                 value={this.state.email}
                 onChange={this.handleInput('email')}
               />
-            </label>
             <br/>
-            <label> 
               <input 
                 placeholder="Account Balance"
                 type="number" 
@@ -83,18 +75,16 @@ class Signup extends React.Component {
                 value={this.state.account_balance}
                 onChange={this.handleInput('account_balance')}
               />
-            </label>
             <br/>
-            <label>
               <input 
                 placeholder="Password"
                 type="password"
                 value={this.state.password}
                 onChange={this.handleInput('password')}
               />
-            </label>
             <br/>
-            <button className="btn" onClick={this.handleSubmit}>Continue</button>
+            <input type="submit" className="btn" onClick={this.handleSubmit} value="Continue"/>
+            {this.renderErrors()}
           </form>
         </div>
         <div className="sign-up-pic">

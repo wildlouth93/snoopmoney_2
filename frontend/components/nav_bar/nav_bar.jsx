@@ -21,8 +21,8 @@ export default ({ currentUser, logout, pathname, clearErrors}) => {
   const display = currentUser ? (
     <div className="in-nav-bar">
       <li className="logo"><Link to="/" ><img src={window.images.logo_image_with_writing} /></Link></li>
-      <p>Welcome, {`${currentUser.first_name} ${currentUser.last_name}`}</p>
-      <button className="btn" onClick={logout}>Log Out</button>
+      <li><p>Welcome, {`${currentUser.first_name} ${currentUser.last_name}`}</p></li>
+      <li><button className="btn" onClick={logout}>Log Out</button></li>
     </div>
    ) : (
     <div className="out-nav-bar">
