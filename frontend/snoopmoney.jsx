@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         users: {
           [window.currentUser.id]: window.currentUser,
         },
-        session: {
-          currentUserId: window.currentUser.id,
-        }
+      },
+      session: {
+        currentUserId: window.currentUser.id,
       }
     };
   }

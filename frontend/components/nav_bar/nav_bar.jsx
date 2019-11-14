@@ -1,50 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default ({ currentUser, logout, pathName}) => {
+export default ({ currentUser, logout, pathname, clearErrors}) => {
   let sessionLinks; 
-  if (pathName === '/login') {
+  if (pathname === '/login') {
     sessionLinks = (<ul className="out-nav-links">    
-      <Link className="btn" to="/signup">Sign Up</Link>
+      <Link className="btn" to="/signup" onClick={clearErrors}>Sign Up</Link>
     </ul>);
-  } else if (pathName === '/signup') {
+  } else if (pathname === '/signup') {
     sessionLinks = (<ul className="out-nav-links">
-      <Link className="btn" to="/login">Sign In</Link>
+      <Link className="btn" to="/login" onClick={clearErrors}>Sign In</Link>
     </ul>);
   } else {
     sessionLinks = (<ul className="out-nav-links">
-      <Link className="btn" to="/signup">Sign Up</Link>
-      <Link className="btn" to="/login">Sign In</Link>
+      <Link className="sign-in-btn" to="/login" onClick={clearErrors}>Sign In</Link>
+      <Link className="btn" to="/signup" onClick={clearErrors}>Sign Up</Link>
     </ul>);
   }; 
 
   const display = currentUser ? (
-    <div>
+    <div className="in-nav-bar">
+      <li className="logo"><Link to="/" ><img src={window.images.logo_image_with_writing} /></Link></li>
       <p>Welcome, {`${currentUser.first_name} ${currentUser.last_name}`}</p>
-      <button onClick={logout}>Log Out</button>
+      <button className="btn" onClick={logout}>Log Out</button>
     </div>
    ) : (
-    <div>
-      <ul className="out-nav-bar">
-        <img src="" alt="" className="logo"/>
-        <li>Products
-          <ul className="out-nav-dropdown">
-            <li>Stocks and Funds</li>
-            <li>Options</li>
-            <li>Gold</li>
-            <li>Cash Management</li>
-            <li>Crypto</li>
-          </ul>
-        </li>
+    <div className="out-nav-bar">
+      <ul className="left-nav">
+        <li className="logo"><Link to="/" ><img src={window.images.logo_image_with_writing}/></Link></li>
+        <li>Products</li>
         <li>Learn</li>
         <li>Support</li>
       </ul>
-
-        {/* <ul className="out-nav-links">    
-          <Link className="btn" to="/signup">Sign Up</Link>
-          <Link className="btn" to="/login">Sign In</Link>
-        </ul> */}
-        {sessionLinks}
+      {sessionLinks}
     </div>
    );
 

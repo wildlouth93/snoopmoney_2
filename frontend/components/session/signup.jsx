@@ -22,7 +22,7 @@ class Signup extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="errors-pop-up">
         {
           this.props.errors.map((error, i) => (
             <li key={`error-${i}`}> 
@@ -42,54 +42,64 @@ class Signup extends React.Component {
 
   render() { 
     return (
-      <div className="session-form">
-        <h1>Make Your Money Move</h1>
-        <h2>SnoopMoney lets you invest in companies you love, commission-free.</h2>
-        <form>
-          {this.renderErrors()}
-          <label>Email:
-            <input 
-              type="email" 
-              value={this.state.email}
-              onChange={this.handleInput('email')}
-              />
-          </label>
-          <br/>
-          <label>First Name: 
-              <input 
+      <div className="sign-up-form">
+        <div className="form-component">
+          <h1>Make Your Money Move</h1>
+          <p>Robinhood lets you invest in companies you love, commission-free.</p>
+          <form className="form-box">
+            {this.renderErrors()}
+            <label>
+                <input 
+                  placeholder="First Name"
+                  type="text"
+                  value={this.state.first_name}
+                  onChange={this.handleInput('first_name')}
+                />
+            </label>
+            <br/>
+            <label>
+                <input
+                placeholder="Last Name"
                 type="text"
-                value={this.state.first_name}
-                onChange={this.handleInput('first_name')}
+                value={this.state.last_name}
+                onChange={this.handleInput('last_name')}
               />
-          </label>
-          <br/>
-          <label>Last Name:
+            </label>
+            <br/>
+            <label>
               <input
-              type="text"
-              value={this.state.last_name}
-              onChange={this.handleInput('last_name')}
-            />
-          </label>
-          <br/>
-          <label>Account Balance: 
-            <input 
-              type="number" 
-              step="0.01"
-              value={this.state.account_balance}
-              onChange={this.handleInput('account_balance')}
-            />
-          </label>
-          <br/>
-          <label>Password: 
-            <input 
-              type="password"
-              value={this.state.password}
-              onChange={this.handleInput('password')}
-            />
-          </label>
-          <br/>
-          <button onClick={this.handleSubmit}>Continue</button>
-        </form>
+                placeholder="Email"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleInput('email')}
+              />
+            </label>
+            <br/>
+            <label> 
+              <input 
+                placeholder="Account Balance"
+                type="number" 
+                step="0.01"
+                value={this.state.account_balance}
+                onChange={this.handleInput('account_balance')}
+              />
+            </label>
+            <br/>
+            <label>
+              <input 
+                placeholder="Password"
+                type="password"
+                value={this.state.password}
+                onChange={this.handleInput('password')}
+              />
+            </label>
+            <br/>
+            <button className="btn" onClick={this.handleSubmit}>Continue</button>
+          </form>
+        </div>
+        <div className="sign-up-pic">
+          <img src={window.images.signup_logo_image} />
+        </div>
       </div>
     )
   }

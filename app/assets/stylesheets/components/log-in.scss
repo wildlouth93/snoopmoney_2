@@ -1,0 +1,87 @@
+.log-in-form {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red; 
+  font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100vh; 
+}
+
+.log-in-pic, .form-component {
+  align-items: center;
+  border: 1px solid red; 
+  margin-bottom: 0px; 
+}
+
+.log-in-pic {
+  width: 50%;  
+  height: 100%;
+}
+
+.log-in-form img {
+  width: 100%;
+}
+
+.log-in-pic {
+  border: 1px solid red; 
+}
+
+.log-in-form .form-component {
+  border: 1px solid red; 
+  height: 100%; 
+}
+
+.log-in-form .form-component h1 {
+  border: 1px solid red; 
+}
+
+.log-in-form .form-component form {
+ border: 1px solid red; 
+}
+
+.log-in-form .form-component {
+  width: 50%;  
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+  margin: 0;
+  position: relative; 
+  height: 100%; 
+  padding-top: 20%
+}
+
+.log-in-form .form-component form { 
+  padding: 20px; 
+}
+
+.log-in-form .form-component form input {
+  border-radius: 5px;
+  border: none; 
+  background-color: whitesmoke;
+  width: 60%; 
+  height: 20px; 
+  border: 1px solid transparent; 
+}
+
+.log-in-form .form-component form input:hover {
+  border: 1px solid lightgray; 
+  background-color: white;
+}
+
+.log-in-form .form-component form input:focus {
+  border: 1px solid $rh_green; 
+  background-color: white;
+  outline: 0; 
+}
+
+.log-in-form .form-component form .btn {
+  color: white; 
+  margin-left: 0px; 
+  height: 40px;
+  width: 60px; 
+}
+
+.log-in-form .form-component form .btn:hover {
+  color: white; 
+  background-color: $rh_green3;
+}

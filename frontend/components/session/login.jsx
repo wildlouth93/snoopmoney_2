@@ -20,7 +20,7 @@ class Login extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="errors-pop-up">
         {
           this.props.errors.map((error, i) => (
             <li key={`error-${i}`}>
@@ -40,27 +40,35 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="session-form">
-        <h2>Welcome to SnoopMoney</h2>
-        <form>
-          {this.renderErrors()}
-          <label>Email:
-            <input
-              type="email"
-              value={this.state.email}
-              onChange={this.handleInput('email')}
-            />
-          </label>
-          <label>Password:
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handleInput('password')}
-            />
-          </label>
-          <br/>
-          <button onClick={this.handleSubmit}>Sign In</button>
-        </form>
+      <div className="log-in-form">
+        <div className="log-in-pic">
+          <img  src={window.images.login_image} />
+        </div>
+        <div className="form-component">
+          <form>
+            <h2>Welcome to Robinhood</h2>
+            {this.renderErrors()}
+            <label>Email
+              <br/>
+              <input
+                type="email"
+                value={this.state.email}
+                onChange={this.handleInput('email')}
+              />
+            </label>
+            <br/> 
+            <label>Password
+              <br/>
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.handleInput('password')}
+              />
+            </label>
+            <br/>
+            <button className="btn" onClick={this.handleSubmit}>Sign In</button>
+          </form>
+          </div>
       </div>
     )
   }

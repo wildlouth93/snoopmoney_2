@@ -1,0 +1,83 @@
+.sign-up-form {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red; 
+  font-family: "DIN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100vh; 
+}
+
+.sign-up-pic, .form-component {
+  align-items: center;
+  border: 1px solid red; 
+  margin-bottom: 0px; 
+}
+
+.sign-up-pic {
+  width: 33%; 
+  height: 100%;
+  border: 1px solid red; 
+}
+
+.sign-up-form img {
+  width: 100%; 
+  border: 1px solid red; 
+  height: 40%;
+}
+
+.sign-up-form .form-component {
+  width: 67%; 
+  height: 100%; 
+}
+
+.sign-up-form .form-component h1, p {
+  text-align: center;
+  border: 1px solid red; 
+}
+
+.sign-up-form .form-component h1 {
+  font-weight: 300;
+}
+
+.sign-up-form .form-component p {
+  font-weight: 100;
+}
+
+.sign-up-form .form-component .form-box {
+  border: 1px solid red; 
+  display: flex;
+  flex-wrap: wrap; 
+  align-content: center;
+}
+
+.sign-up-form .form-component .form-box input {
+  border: 1px solid red; 
+  display: flex; 
+  flex-wrap: wrap; 
+}
+
+.sign-up-form .form-component form label {
+  border: 1px solid red; 
+  width: 50%;
+}
+
+.sign-up-form .form-component form input {
+  border-radius: 5px;
+  border: none; 
+  background-color: whitesmoke;
+  width: 80%; 
+  height: 20px; 
+  border: 1px solid transparent; 
+  align-items: center;
+}
+
+.sign-up-form .form-component form .btn {
+  color: white; 
+  height: 40px;
+  width: 60px; 
+  display: flex;
+}
+
+.sign-up-form .form-component form .btn:hover {
+  color: white; 
+  background-color: $rh_green3;
+}
