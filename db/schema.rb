@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_202700) do
+ActiveRecord::Schema.define(version: 2019_11_14_195717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "holdings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "ticker", null: false
+    t.integer "num_shares", null: false
+    t.float "cost_basis", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticker"], name: "index_holdings_on_ticker", unique: true
+    t.index ["user_id"], name: "index_holdings_on_user_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -26,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_11_11_202700) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
+  end
+
+  create_table "watch_list_items", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "ticker", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticker"], name: "index_watch_list_items_on_ticker", unique: true
+    t.index ["user_id"], name: "index_watch_list_items_on_user_id", unique: true
   end
 
 end

@@ -10,6 +10,8 @@ export default ({ currentUser, logout }) => {
       <p>{`${currentUser.last_name}`}</p>
       <p>Emai: {`${currentUser.email}`}</p>
       <p>Account Balance: ${`${currentUser.account_balance}`}</p>
+      {/* <p>{`${holdings}`}</p>
+      <p>{`${watch_list_items}`}</p> */}
     </div>
   ) : (
     <div>

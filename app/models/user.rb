@@ -3,6 +3,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :account_balance, :password_digest, :session_token, presence: true 
   validates :password, length: {minimum: 6, allow_nil: true }
 
+  has_many :watch_list_items 
+  has_many :holdings
+
   attr_reader :password 
   after_initialize :ensure_session_token
 
