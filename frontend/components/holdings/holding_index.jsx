@@ -14,10 +14,11 @@ class HoldingIndex extends React.Component {
       <div>
         <ul>
           {
-            holdings.map(event => (
+            holdings.map(holding => (
               <HoldingIndexItem 
                 holding={holding}
                 deleteHolding={deleteHolding}
+                updateHolding={updateHolding}
                 key={holding.ticker}
               />
             ))

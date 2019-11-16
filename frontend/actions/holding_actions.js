@@ -20,27 +20,27 @@ const removeHolding = ticker => ({
 })
 
 export const requestHoldings = () => dispatch => (
-  HoldingAPIUti.fetchHoldings()
+  HoldingAPIUtil.fetchHoldings()
     .then(holdings => dispatch(receiveHoldings(holdings)) )
 )
 
 export const requestHolding = (ticker) => dispatch => (
   HoldingAPIUtil.fetchHolding(ticker)
-    .then(holding => dispatch(receiveHoldings(holding)))
+    .then(holding => dispatch(receiveHolding(holding)))
 )
 
 export const createHolding = (holding) => dispatch => (
   HoldingAPIUtil.createHolding(holding)
-    .then(holding => dispatch(receiveHoldings(holding)))
+    .then(holding => dispatch(receiveHolding(holding)))
 )
 
 export const updateHolding = (holding) => dispatch => (
   HoldingAPIUtil.updateHolding(holding)
-    .then(holding => dispatch(receiveHoldings(holding)))
+    .then(holding => dispatch(receiveHolding(holding)))
 )
 
 export const deleteHolding = (ticker) => dispatch => (
   HoldingAPIUtil.deleteHolding(ticker)
-    .then(() => dispatch(removeEvent(eventId)))
+    .then(() => dispatch(removeHolding(ticker)))
 )
 

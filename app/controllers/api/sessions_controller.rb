@@ -1,5 +1,9 @@
 class Api::SessionsController < ApplicationController
   include Api::SessionsHelper
+  def new 
+    
+  end
+
   def create
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
     # @tickers = @user.tickers 

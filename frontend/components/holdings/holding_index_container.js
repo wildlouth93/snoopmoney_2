@@ -3,7 +3,7 @@ import { requestHoldings, deleteHolding, updateHolding } from '../../actions/hol
 import HoldingIndex from './holding_index';
 
 const mapStateToProps = state => ({
-  holdings: Object.values(state.holdings)
+  holdings: Object.values(state.entities.holdings)
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,7 @@
 class Api::WatchListItemsController < ApplicationController
   include Api::SessionsHelper 
 
-  # before_action :require_logged_in
+  before_action :require_logged_in
 
   def index 
     @watch_list_items = cuurent_user.watch_list_items;
@@ -26,8 +26,6 @@ class Api::WatchListItemsController < ApplicationController
     @watch_list_item = WatchListItem.new(watch_list_item_params)
   
     @watch_list_item.user_id = current_user;
-
-    debugger; 
     
     if @watch_list_item.save 
       @watch_list_item.price = client.get_price(@watch_list_item.ticker)

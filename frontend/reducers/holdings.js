@@ -8,12 +8,12 @@ const holdingsReducer = (state={}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_HOLDINGS:
-      return Object.assign({}, state, action.events);
+      return Object.assign({}, state, action.holdings);
     case RECEIVE_HOLDING:
-      return Object.assign({}, state, { [action.event.id]: action.event });
+      return Object.assign({}, state, { [action.holding.ticker]: action.holding });
     case REMOVE_HOLDING:
       let newState = Object.assign({}, state);
-      delete newState[action.eventId];
+      delete newState[action.ticker];
       return newState;
     default:
       return state; 
