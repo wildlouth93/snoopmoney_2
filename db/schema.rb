@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_041634) do
+ActiveRecord::Schema.define(version: 2019_11_15_182854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_041634) do
     t.float "cost_basis", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ticker", "user_id"], name: "index_holdings_on_ticker_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_041634) do
     t.string "ticker", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ticker", "user_id"], name: "index_watch_list_items_on_ticker_and_user_id", unique: true
   end
 
 end
