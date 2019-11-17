@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entities: {
         users: {
           [window.currentUser.id]: window.currentUser,
-        }
+        }, 
       },
       session: {
         currentUserId: window.currentUser.id,
