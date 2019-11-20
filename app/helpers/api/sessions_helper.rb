@@ -37,6 +37,18 @@ module Api::SessionsHelper
         @client.key_stats(ticker);
       end
 
+      def get_one_day_chart(ticker)
+        @client.chart(ticker, '1d', chart_interval: 10)
+      end
+
+      def get_one_month_chart(ticker)
+        @client.chart(ticker, '1m', chart_close_only: true)
+      end
+
+      def get_one_year_chart(ticker)
+        @client.chart(ticker, '1y', chart_close_only: true)
+      end
+
       # Options are: 5y, 2y, 1y, ytd, 6m, 3m, 1m
       def get_company_dividends(ticker, period)
         @client.dividends(ticker, period)

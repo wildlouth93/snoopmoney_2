@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { requestWatchListItems, deleteWatchListItem} from '../../actions/watchlistitem_actions';
-import WatchListItemsIndex from './holding_index';
+import WatchListItemsIndex from './watchlistitem_index';
 
-const mapStateToProps = state => ({
-  watchlistitems: Object.values(state.entities.watchlistitems)
-})
+const mapStateToProps = state => {
+  return {watchlistitems: Object.values(state.entities.watchlistitems)}
+}
 
 const mapDispatchToProps = dispatch => ({
   requestWatchListItems: () => dispatch(requestWatchListItems()),

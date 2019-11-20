@@ -1,5 +1,5 @@
 import React from 'react';
-import HoldingIndexItem from './watchlistitems_index_item';
+import WatchListItemsIndexItem from './watchlistitems_index_item';
 import { Link } from 'react-router-dom';
 
 class WatchListItemsIndex extends React.Component {
@@ -13,6 +13,7 @@ class WatchListItemsIndex extends React.Component {
       <div>
         <ul>
           {
+            
             watchlistitems.map(watchlistitem => (
               <WatchListItemsIndexItem
                 watchlistitem={watchlistitem}

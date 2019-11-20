@@ -4,21 +4,14 @@ class Api::HoldingsController < ApplicationController
   before_action :require_logged_in
 
   def index 
+    client = Client.new 
     @holdings = current_user.holdings;
-    client = Client.new
-
-    @holdings.each do |holding| 
+    @holdings.each do |holding|
       holding.price = client.get_price(holding.ticker)
-      holding.quote = client.get_quote(holding.ticker)
-      holding.company_info = client.get_company_info(holding.ticker)
-      holding.company_logo = client.get_company_logo(holding.ticker)
-      holding.company_news = client.get_company_news(holding.ticker, 5)
-      holding.company_chart = client.get_company_chart(holding.ticker)
-      holding.company_key_stats = client.get_company_key_stats(holding.ticker)
-      holding.company_dividends = client.get_company_dividends(holding.ticker, '1y')
-      holding.company_earnings = client.get_company_earnings(holding.ticker)
-      holding.income_statement = client.get_company_earnings(holding.ticker)
+      holding.change_percent_s = client.get_quote(holding.ticker).change_percent_s
+      holding.one_day_chart = client.get_one_day_chart(holding.ticker)
     end
+    render :index 
   end
 
   def create 
@@ -29,20 +22,14 @@ class Api::HoldingsController < ApplicationController
     @holding.user_id = current_user.id;
     #worked when i did @holding.user_id = 28; 
     #error when I do current_user.id 
-    
+  
     if @holding.save 
       @holding.price = client.get_price(@holding.ticker)
-      @holding.quote = client.get_quote(@holding.ticker)
-      @holding.company_info = client.get_company_info(@holding.ticker)
-      @holding.company_logo = client.get_company_logo(@holding.ticker)
-      @holding.company_news = client.get_company_news(@holding.ticker, 5)
-      @holding.company_chart = client.get_company_chart(@holding.ticker)
-      @holding.company_key_stats = client.get_company_key_stats(@holding.ticker)
-      @holding.company_dividends = client.get_company_dividends(@holding.ticker, '1y')
-      @holding.company_earnings = client.get_company_earnings(@holding.ticker)
-      @holding.income_statement = client.get_income_statement(@holding.ticker)
+      @holding.change_percent_s = client.get_quote(@holding.ticker).change_percent_s
+      @holding.one_day_chart = client.get_one_day_chart(@holding.ticker)
       current_user.buy_stock(@holding.ticker) 
-      render :show 
+      render :show
+      # redirect_to controller: 'stocks', action: 'show', holding_id: @holding.id
     else
       render json: @holding.errors.full_messages, status: 422
     end
@@ -54,17 +41,6 @@ class Api::HoldingsController < ApplicationController
     @holding = Holding.find_by(ticker: params[:id]);
 
     if @holding && @holding.update_attributes(holding_params)
-      @holding.price = client.get_price(@holding.ticker)
-      @holding.quote = client.get_quote(@holding.ticker)
-      @holding.company_info = client.get_company_info(@holding.ticker)
-      @holding.company_logo = client.get_company_logo(@holding.ticker)
-      @holding.company_news = client.get_company_news(@holding.ticker, 5)
-      @holding.company_chart = client.get_company_chart(@holding.ticker)
-      @holding.company_key_stats = client.get_company_key_stats(@holding.ticker)
-      @holding.company_dividends = client.get_company_dividends(@holding.ticker, '1y')
-      @holding.company_earnings = client.get_company_earnings(@holding.ticker)
-      @holding.income_statement = client.get_company_earnings(@holding.ticker)
-      current_user.buy_more_stock(@holding.ticker)
       render :show 
     elsif !@holding 
       render json: ['Could not locate holding'], status: 400
@@ -77,17 +53,11 @@ class Api::HoldingsController < ApplicationController
     client = Client.new
 
     @holding = current_user.holdings.find_by(ticker: params[:id]);
- 
-    @holding.price = client.get_price(@holding.ticker);
-    @holding.quote = client.get_quote(@holding.ticker);
-    @holding.company_info = client.get_company_info(@holding.ticker);
-    @holding.company_logo = client.get_company_logo(@holding.ticker);
-    @holding.company_news = client.get_company_news(@holding.ticker, 5);
-    @holding.company_chart = client.get_company_chart(@holding.ticker);
-    @holding.company_key_stats = client.get_company_key_stats(@holding.ticker);
-    @holding.company_dividends = client.get_company_dividends(@holding.ticker, '1y');
-    @holding.company_earnings = client.get_company_earnings(@holding.ticker);
-    @holding.income_statement = client.get_company_earnings(@holding.ticker);
+    debugger; 
+    @holding.price = client.get_price(@holding.ticker)
+    @holding.change_percent_s = client.get_quote(@holding.ticker).change_percent_s
+    @holding.one_day_chart = client.get_one_day_chart(@holding.ticker)
+    render :show 
   end
 
   def destroy 

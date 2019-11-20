@@ -53,6 +53,7 @@ class Login extends React.Component {
                 type="email"
                 value={this.state.email}
                 onChange={this.handleInput('email')}
+                placeholder="u28@gmail.com"
               />
             </label>
             <br/> 
@@ -62,6 +63,7 @@ class Login extends React.Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.handleInput('password')}
+                placeholder="hunter2"
               />
             </label>
             <br/>

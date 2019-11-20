@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy] 
     resources :holdings
     resources :watch_list_items
+    resources :stocks
   end
 
   root to: 'root#root'

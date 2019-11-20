@@ -6,12 +6,16 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import { AuthRoute, ProtectedRoute} from '../utils/route_utils';
 import MainContainer from './main/main_container';
 import HoldingsIndexContainer from './holdings/holding_index_container';
-import WatchListItemsIndexContainer from './watchlistitems/watchlistitem_index';
+import WatchListItemsIndexContainer from './watchlistitems/watchlistitem_index_container';
+import StockShowContainer from './stocks/stock_show_container';
+import AccountShowContainer from './account/account_show_container';
 
 const App = () => (
   <div>
     <Route path="/" component={NavBarContainer} />
     <Switch>
+      <Route path="/account" component={AccountShowContainer} />
+      <Route path="/stocks/:symbol" component={StockShowContainer} />
       <Route path="/watchlistitems" component={WatchListItemsIndexContainer} />
       <Route path="/holdings" component={HoldingsIndexContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />

@@ -29,7 +29,11 @@ module Client
     end
 
     def get_company_chart(ticker)
-      @client.chart(ticker)
+      @client.chart(ticker, 'dynamic')
+    end
+
+    def get_one_day_chart(ticker)
+      @client.chart(ticker, '1d')
     end
 
     def get_company_key_stats(ticker)
