@@ -11,18 +11,18 @@ export default class StockChart extends PureComponent {
     return (
       <LineChart
         width={500}
-        height={300}
+        height={1000}
         data={this.props.data}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
 
-        <XAxis dataKey="name" />
-        <YAxis />
+        {/* <XAxis dataKey="name" />
+        <YAxis /> */}
         <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} />
+        {/* <Legend /> */}
+        <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} strokeWidth={3} />
       </LineChart>
     );
   }

@@ -6,6 +6,8 @@ import HoldingIndexItem from '../holdings/holding_index_item';
 import WatchListItemsIndexItem from '../watchlistitems/watchlistitems_index_item';
 import NewsItem from './news_item';
 import MainChart from './main_chart';
+import StockChart from '../stocks/stock_chart';
+import MiniChart2 from '../stocks/mini_chart';
 
 
 class Main extends React.Component {
@@ -20,20 +22,18 @@ class Main extends React.Component {
     if (watchlistitems.length === 0) return null; 
     const main = currentUser ? (
       <div>
-        <p>This is the first thing on the main page after signed in.</p>
-        <p>{currentUser.net_worth}</p>
-        <p>{currentUser.total_cost_basis}</p>
-        <p>{currentUser.account_balance}</p>
-        <br/>
-        <Link to="/account">Account</Link>
-        {/* <div className="main-chart">
-          {
-           
-          <MainChart />
-          }
-        </div> */}
+        <div className="main-info">
+          <h3>${currentUser.net_worth}</h3>
+          <p>{(holdings[0].change_percent_s)}Today</p>
+       </div>
+        <div className="main-charts">
+          <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/>
+        </div>
         <div className="main-side-bar">
-         <h3>Stocks</h3>
+          <div className="side-bar-head">
+            <h3>Stocks</h3>
+            <img className="ellipsis" src={window.images.ellipsis_image} />
+          </div>
           {
             holdings.map(holding => (
                 <HoldingIndexItem className="side-bar-el"
@@ -51,9 +51,10 @@ class Main extends React.Component {
           {
           
           }
-      
-          <br />
-          <h3>WatchList</h3>
+          <div className="side-bar-head">
+            <h3>WatchList</h3>
+            <img className="ellipsis" src={window.images.ellipsis_image} />
+          </div>
           {
             watchlistitems.map(watchlistitem => (
               <WatchListItemsIndexItem className="side-bar-el"

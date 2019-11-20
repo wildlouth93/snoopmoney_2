@@ -1,19 +1,45 @@
 .main-side-bar {
-  border: 1px solid red; 
-  width: 200px;
+  height: 600px;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  right: 10px;
+    /* background-color: black; */
+  overflow-x: hidden;
+  padding-top: 20px;
+  list-style: none; 
+  padding-top: 0;
+  box-shadow: 1px 1px 22px -7px lightgray;
 }
 
-.main-side-bar .side-bar-el {
-  border: 1px solid red; 
-  height: 400px;
+.main-side-bar .side-bar-el { 
+  height: 60px;
 }
 
 .main-side-bar .side-bar-el li {
+}
+.main-info {
+  position: flex; 
+  right: 300px; 
+  width: 60%; 
+  margin-left: 50px; 
+}
+
+.main-charts {
   border: 1px solid red; 
+  position: flex; 
+  right: 300px; 
+  width: 60%; 
+  margin-left: 50px; 
 }
 
 .main-news {
   border: 1px solid red; 
+  position: flex; 
+  right: 300px; 
+  width: 60%; 
+  margin-left: 50px; 
 }
 
 .main-news .news-item {
@@ -23,3 +49,94 @@
 .main-news .news-item li {
   border: 1px solid red; 
 }
+
+.ellipsis {
+  color: black;
+  height: 50px;
+  width: 50px;
+  background-color: white; 
+}
+
+.main-side-bar .side-bar-head {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: 1px solid lightgray; 
+}
+
+
+.main-side-bar .side-bar-head h3 {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px; 
+  font-weight: 500;
+  font-size: 16px; 
+}
+
+.main-side-bar .side-bar-el ul {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  display: flex;
+  padding: 0px;
+  margin: 0px; 
+  height: 60px; 
+  border-bottom: 0.5px solid lightgray;
+}
+
+.main-side-bar .side-bar-el ul li {
+  width: 33%;
+  height: 32px;
+  margin: auto;
+}
+
+.main-side-bar .side-bar-el ul li a {
+  margin-left: 10px;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.main-side-bar .side-bar-el ul li p {
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: auto;
+  width: 65px;
+  padding-left: 0px;
+  margin-left: 2px;
+}
+
+.main-side-bar .side-bar-el ul li:last-of-type p:last-of-type {
+  color: $rh_green;
+}
+
+// .wl-ticker-link {
+//   height: 20px; 
+// }
+
+.wl-ticker-li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.main-info p {
+  text-align: left; 
+  margin-top: 0px; 
+  padding-top: 0px; 
+}
+
+.main-info h3 {
+  margin-bottom: 5px; 
+}
+
+.main-charts {
+  height: 200px; 
+}
+
+.main-info {
+  border-bottom: 1px dotted gray;
+}
+
+

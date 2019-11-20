@@ -5,10 +5,11 @@ import MiniChart from '../stocks/mini_chart';
 const WatchListItemsIndexItem = ({ watchlistitem, deleteWatchListItem}) => (
   <li className="side-bar-el">
     <ul>
-      <li><Link to={`/stocks/${watchlistitem.ticker}`}>{watchlistitem.ticker}</Link></li>
-      <li><p>{watchlistitem.price}</p></li>
-      <li><p>{watchlistitem.change_percent_s}</p></li>
-      <li><MiniChart data={watchlistitem.one_day_chart} /></li> 
+      <li className="wl-ticker-li"><Link className="wl-ticker-link" to={`/stocks/${watchlistitem.ticker}`}>{watchlistitem.ticker}</Link></li>
+      <li><MiniChart data={watchlistitem.one_day_chart}/></li> 
+      <li><p>{watchlistitem.price}</p>
+        <p>{watchlistitem.change_percent_s}</p>
+      </li>      
     </ul>
   </li>
 )

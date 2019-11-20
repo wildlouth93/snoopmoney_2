@@ -79,6 +79,14 @@ class StockShow extends React.Component {
             ))
           }
         </div> */}
+        {/* <div className="stock-interaction">
+          {
+            <div>
+              <BuySellForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} />
+              <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/>
+            </div>
+          }
+        </div> */}
       </div>
     )
   }
