@@ -12,7 +12,6 @@ class AccountShow extends React.Component {
     const { currentUser, logout, holdings} = this.props; 
     return (
       <div>
-        <Link to="/">Home</Link>
         <h1>{currentUser.first_name} {currentUser.last_name}</h1>
         <ul>
           <li>Account</li>

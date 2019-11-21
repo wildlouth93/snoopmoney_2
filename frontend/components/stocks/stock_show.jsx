@@ -16,14 +16,13 @@ class StockShow extends React.Component {
   render(){ 
     return (
       <div className="stock-show">
-        <Link to="/">Home</Link>
         <p>{this.props.stock.price}</p>
         <div className="stock-charts">
           <StockChart data={this.props.stock.one_day_chart} dataKey="average"/>
           <br/>
           <StockChart data={this.props.stock.one_month_chart} dataKey="close"/>
           <br/>
-          <StockChart data={this.props.stock.one_month_chart} dataKey="close"/>
+          <StockChart data={this.props.stock.one_year_chart} dataKey="close"/>
         </div>
         <div className="stock-about">
           <h3>About {this.props.stock.symbol}</h3>

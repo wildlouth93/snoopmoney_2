@@ -20,14 +20,39 @@ class Main extends React.Component {
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
     if (holdings.length === 0) return null; 
     if (watchlistitems.length === 0) return null; 
+    let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let data2 = Array.apply(null, Array(39)).map(function () { return { average: 0 } }); 
+
+    holdings.forEach(holding => {
+      holding.one_day_chart.forEach((datapoint, idx) => {
+        data2[idx].average += (datapoint.average * holding.num_shares)
+      })
+    });
+
+    // {let fakeNewsItem = {};
+    // fakeNewsItem.url = "google.com";
+    // fakeNewsItem.source = "FakeNews";
+    // fakeNewsItem.headline = "Headline";
+    // fakeNewsItem.summary = "This is a summary of the fake news."}
+
     const main = currentUser ? (
       <div>
         <div className="main-info">
-          <h3>${currentUser.net_worth}</h3>
+          <h3>${networth}</h3>
           <p>{(holdings[0].change_percent_s)}Today</p>
        </div>
         <div className="main-charts">
-          <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/>
+          {/* <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/> */}
+          { <StockChart data={data2} dataKey="average" className="main-chart"/> }
+          
+          <ul>
+            <li>1D</li>
+            <li>1W</li>
+            <li>1M</li>
+            <li>3M</li>
+            <li>1Y</li>
+            <li>ALL</li>
+          </ul>
         </div>
         <div className="main-side-bar">
           <div className="side-bar-head">
@@ -68,8 +93,13 @@ class Main extends React.Component {
         <div className="main-news">
           <h3>News</h3>
           {
-            watchlistitems.map(watchlistitem=> (
+            watchlistitems.map(watchlistitem => (
               watchlistitem.news.map(newsItem => (
+                // <NewsItem 
+                //   newsItem={fakeNewsItem}
+                //   key={i}
+                //   watchlistitem={watchlistitem}
+                // />
                 <NewsItem
                   newsItem={newsItem}
                   key={newsItem.datetime}

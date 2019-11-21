@@ -11,6 +11,7 @@
   list-style: none; 
   padding-top: 0;
   box-shadow: 1px 1px 22px -7px lightgray;
+  bottom: 100px; 
 }
 
 .main-side-bar .side-bar-el { 
@@ -27,7 +28,6 @@
 }
 
 .main-charts {
-  border: 1px solid red; 
   position: flex; 
   right: 300px; 
   width: 60%; 
@@ -132,11 +132,28 @@
 }
 
 .main-charts {
-  height: 200px; 
+  height: 350px; 
 }
 
 .main-info {
-  border-bottom: 1px dotted gray;
+  border-bottom: 0.5px dotted gray;
 }
 
+.main-news {
+  list-style: none; 
+}
 
+.main-charts ul {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  padding: 0;
+}
+
+.main-charts {
+  border-bottom: 1px solid lightgray; 
+}
+
+.main-charts .main-chart {
+  width: 100%;
+}

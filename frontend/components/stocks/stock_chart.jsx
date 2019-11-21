@@ -11,7 +11,7 @@ export default class StockChart extends PureComponent {
     return (
       <LineChart
         width={500}
-        height={1000}
+        height={300}
         data={this.props.data}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
@@ -22,7 +22,7 @@ export default class StockChart extends PureComponent {
         <YAxis /> */}
         <Tooltip />
         {/* <Legend /> */}
-        <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} strokeWidth={3} />
+        <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} strokeWidth={2} />
       </LineChart>
     );
   }

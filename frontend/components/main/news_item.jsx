@@ -4,16 +4,19 @@ import watchListItemsReducer from '../../reducers/watchlistitems';
 
 const NewsItem = ({ newsItem, watchlistitem }) => (
   <li className="news-item">
-    <ul>
-      <li><p>Source: {newsItem.source}</p></li>
-      <li><p>Date: {newsItem.datetime}</p></li>
-      <li><h4>{newsItem.headline}</h4></li>
-      <li><p>Summary: {newsItem.summary}</p></li>
-      <li><p>{watchlistitem.ticker}</p></li>
-      <li><p>{watchlistitem.change_percent_s}</p></li>
-      {/* <li><p>Related: {newsItem.related}</p></li> */}
-      <li><Link to={`${newsItem.url}`}>Link to Article</Link></li>
-    </ul>
+    <Link to={`${newsItem.url}`}>
+      <div>
+        <h5>{newsItem.source} 1d</h5>
+        {/* <li>{newsItem.datetime}</li> */}
+        <h4>{newsItem.headline}</h4>
+        <p>{newsItem.summary}</p>
+        <h6>{watchlistitem.ticker} {watchlistitem.change_percent_s}</h6>
+
+        {/* <li><p>Related: {newsItem.related}</p></li> */}
+        <img src={window.images.stock_news_image}/>
+      
+      </div>
+    </Link>
   </li>
 )
 

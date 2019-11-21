@@ -21,7 +21,7 @@ export default ({ currentUser, logout, pathname, clearErrors}) => {
   const display = currentUser ? (
     <div className="in-nav-bar">
       <li className="logo"><Link to="/" ><img src={window.images.nav_bar_logo_image} /></Link></li>
-      <li><p>Welcome, {`${currentUser.first_name} ${currentUser.last_name}`}</p></li>
+      <li><p>Search Bar Placeholder</p></li>
       <li>
         <ul>
           <li><Link to="/">Home</Link></li>
