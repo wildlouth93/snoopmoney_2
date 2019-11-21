@@ -2,7 +2,7 @@ class Stock
   include Api::SessionsHelper 
   include Api::StocksHelper 
 
-  attr_reader :symbol, :price, :quote, :company_info, :company_news, :company_chart, :company_key_stats, :company_earnings, :one_day_chart, :one_month_chart, :one_year_chart
+  attr_reader :symbol, :price, :quote, :company_info, :company_news, :company_chart, :company_key_stats, :company_earnings, :one_day_chart, :one_month_chart, :one_year_chart, :change_percent_s
 
   def self.make_all_stocks 
     SP100_STOCK_SYMBOLS.each do |symbol| 
@@ -23,6 +23,7 @@ class Stock
     @one_year_chart = client.get_one_year_chart(symbol)
     @company_key_stats = client.get_company_key_stats(symbol)
     @company_earnings = client.get_company_earnings(symbol)
+    @change_percent_s = client.get_quote(symbol).change_percent_s
 
     # @company_dividends = client.get_company_dividends(symbol, 1y)
     # @income_statement = client.get_company_income_statement(symbol)
@@ -44,6 +45,7 @@ class Stock
     @one_year_chart = client.get_one_year_chart(symbol)
     @company_key_stats = client.get_company_key_stats(symbol)
     @company_earnings = client.get_company_earnings(symbol)
+    @change_percent_s = client.get_quote(symbol).change_percent_s
 
     # self.company_logo = client.get_company_logo(symbol)
      # self.company_dividends = client.get_company_dividends(symbol)

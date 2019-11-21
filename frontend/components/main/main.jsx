@@ -11,13 +11,24 @@ import MiniChart2 from '../stocks/mini_chart';
 
 
 class Main extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: true };
+  }
+
   componentDidMount() {
     this.props.requestHoldings();
-    this.props.requestWatchListItems();
+    this.props.requestWatchListItems()
+      .then(() => this.setState({ loading: false }));
   }
 
   render() {
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
+
+    if (this.state.loading) {
+      return <div className="loader-container"><div className="loader"></div></div>
+    }
+
     if (holdings.length === 0) return null; 
     if (watchlistitems.length === 0) return null; 
     let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -29,11 +40,11 @@ class Main extends React.Component {
       })
     });
 
-    // {let fakeNewsItem = {};
-    // fakeNewsItem.url = "google.com";
-    // fakeNewsItem.source = "FakeNews";
-    // fakeNewsItem.headline = "Headline";
-    // fakeNewsItem.summary = "This is a summary of the fake news."}
+    const fakeNewsItem = {};
+    fakeNewsItem.url = "google.com";
+    fakeNewsItem.source = "Reuters";
+    fakeNewsItem.headline = "Apple, Intel file antitrust case vs SoftBank-owned firm over patent practices";
+    fakeNewsItem.summary = "SAN FRANCISCO(Reuters) - Apple Inc(AAPL.O) and Intel Corp(INTC.O) on Wednesday filed an antitrust lawsuit against Fortress Investment Group, alleging the SoftBank Group Corp(9984.T) unit stockpiled patents to hold up tech firms with lawsuits demanding as much as $5.1 billion.";
 
     const main = currentUser ? (
       <div>
@@ -93,18 +104,21 @@ class Main extends React.Component {
         <div className="main-news">
           <h3>News</h3>
           {
-            watchlistitems.map(watchlistitem => (
-              watchlistitem.news.map(newsItem => (
-                // <NewsItem 
-                //   newsItem={fakeNewsItem}
-                //   key={i}
-                //   watchlistitem={watchlistitem}
-                // />
-                <NewsItem
-                  newsItem={newsItem}
-                  key={newsItem.datetime}
-                  watchlistitem={watchlistitem}
-                />
+            watchlistitems.map((watchlistitem, i) => (
+              watchlistitem.news.map((newsItem,j) => (
+                <div>
+                  <NewsItem 
+                    newsItem={fakeNewsItem}
+                    key={(i*j)}
+                    watchlistitem={watchlistitem}
+                  />
+                  <NewsItem
+                    newsItem={newsItem}
+                    key={newsItem.datetime}
+                    watchlistitem={watchlistitem}
+                    className="news-item"
+                  />
+                </div>
               ))
             ))
           }

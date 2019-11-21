@@ -23,3 +23,5 @@ json.extract! stock, :company_chart
 json.extract! stock, :one_day_chart
 json.extract! stock, :one_month_chart
 json.extract! stock, :one_year_chart 
+
+json.extract! stock, :change_percent_s

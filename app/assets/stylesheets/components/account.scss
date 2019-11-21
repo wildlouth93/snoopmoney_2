@@ -1,0 +1,162 @@
+.account-show {
+  margin-left: 150px; 
+}
+
+.account-bottom .bottom-chart img {
+  height: 100%;
+  width: 100%;
+}
+
+.account-top .top-chart img {
+  height: 100%;
+  width: 100%;
+}
+
+
+.account-bar {
+  border-bottom: 0.5px solid lightgray;
+  height: 80px;
+}
+
+.account-bar h1 {
+  margin-bottom: 15px;
+}
+
+.account-top {
+  height: 250px;
+}
+
+.account-bar ul {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+  height: 28px;
+}
+
+.account-bar ul li {
+  float: left; 
+  margin-right: 20px;
+  font-size: 13px;
+}
+// margin-right: 20px;
+.scrollable h3 {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.scrollable h1 {
+  margin-top: 10px;
+}
+
+.scrollable {
+  overflow-x: hidden;
+  height: 600px;
+  width: 100%;
+}
+
+.account-top {
+  display: flex;
+}
+
+.account-top .top-content {
+  width: 65%;
+}
+
+.account-top .top-chart {
+  width: 25%;
+}
+
+.account-bottom {
+  display: flex;
+}
+
+.account-bottom .bottom-content {
+  width: 65%;
+}
+
+.account-bottom .bottom-chart {
+  width: 25%;
+}
+
+.top-content ul li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-content ul li div {
+  display: flex; 
+}
+
+.bottom-content th:first-of-type {
+  padding-right: 150px;
+  text-align: left;
+}
+
+.top-content ul {
+  padding-left: 0;
+}
+
+.top-content ul li {
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  // padding-top: auto;
+    /* text-align: center; */
+  height: 50px;
+}
+
+.top-content ul li label, p {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.top-content ul li p:first-of-type {
+  color: lightgray;
+}
+
+.scrollable h3:nth-of-type(2) {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.bottom-content table thead tr {
+  color: lightgray;
+  font-size: 13px; 
+  height: 50px;
+}
+
+.bottom-content table thead {
+  border-bottom: 1px solid lightgray;
+}
+
+.bottom-content table tbody {
+  font-size: 13px; 
+}
+
+.bottom-content table tbody tr {
+  height: 50px;
+  border-bottom: 1px solid lightgray;
+}
+
+.account-bottom {
+  height: 250px;
+}
+
+.account-bottom .bottom-content {
+  overflow-x: hidden;
+}
+
+.bottom-content table {
+  width: 100%; 
+}
+
+.bottom-content table {
+  text-align: center;
+  border-collapse: collapse;
+}
+

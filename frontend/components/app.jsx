@@ -14,10 +14,10 @@ const App = () => (
   <div>
     <Route path="/" component={NavBarContainer} />
     <Switch>
-      <Route path="/account" component={AccountShowContainer} />
-      <Route path="/stocks/:symbol" component={StockShowContainer} />
-      <Route path="/watchlistitems" component={WatchListItemsIndexContainer} />
-      <Route path="/holdings" component={HoldingsIndexContainer} />
+      <ProtectedRoute path="/account" component={AccountShowContainer} />
+      <ProtectedRoute path="/stocks/:symbol" component={StockShowContainer} />
+      {/* <Route path="/watchlistitems" component={WatchListItemsIndexContainer} />
+      <Route path="/holdings" component={HoldingsIndexContainer} /> */}
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
       <Route exact path="/" component={MainContainer} />

@@ -1,5 +1,4 @@
 .stock-show {
-  border: 1px solid red; 
 }
 
 .stock-show .stock-graphs {
@@ -7,9 +6,51 @@
 }
 
 .stock-show .stock-about {
-  border: 1px solid red; 
+  width: 600px;
+  margin-left: 100px; 
+  margin-top: 5px; 
 }
 
 .stock-show .stock-about h3, p, li {
   
+}
+
+.stock-show .stock-about h3 {
+  border-bottom: 1px solid lightgray;
+  padding: 9px;
+  margin: 0px;
+}
+
+.stock-show .stock-about p {
+  overflow-x: hidden;
+  height: 70px;
+  line-height: 22px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.stock-show .stock-about .stats ul {
+  display: flex; 
+  flex-wrap: wrap; 
+  padding: 0; 
+}
+
+.stock-show .stock-about .stats ul li {
+  text-align: left;
+  margin: 0 6px 12px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+  width: 22%;
+  overflow-x: hidden; 
+}
+
+.stock-show .stock-about .stats ul li label {
+  font-weight: 700;
+}
+
+.stock-show .main-charts {
+  padding-bottom: 10px; 
 }

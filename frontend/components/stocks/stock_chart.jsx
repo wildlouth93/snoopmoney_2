@@ -18,8 +18,8 @@ export default class StockChart extends PureComponent {
         }}
       >
 
-        {/* <XAxis dataKey="name" />
-        <YAxis /> */}
+        <XAxis dataKey="time" hide={true} />
+        <YAxis domain={['dataMin', 'dataMax']} hide={true} />
         <Tooltip />
         {/* <Legend /> */}
         <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} strokeWidth={2} />
