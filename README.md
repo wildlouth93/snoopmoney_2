@@ -11,7 +11,7 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
 * In the dashboard, users have access to a scrollable box which contains the user's stock that they currently own or are watching. 
 * From the box, users can click the stock symbol which takes the user to stock's show page.
-* Highlighted Feature: Scrollable Stock and Watchlist Box: 
+* **Highlighted Feature: Scrollable Stock and Watchlist Box:** 
 
 ![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
 
