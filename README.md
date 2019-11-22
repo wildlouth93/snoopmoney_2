@@ -54,4 +54,4 @@ This project was designed and built in under two weeks.
 #### Notes
 1. Issues exist with some of the information being passed from the API. This explains why some information in the news feed and about section seems hardcoded in. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information. 
 
-2. Name. Check out this article if you're curious why the stock is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
+2. Name. Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
