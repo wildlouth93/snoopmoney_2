@@ -8,7 +8,10 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 * User Authentication using BCrypt
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
 * In the dashboard, users have access to a scrollable box which contains the user's stock that they currently own or are watching. 
-* From the box, users can click the stock symbol which takes the user to stock's show page. 
+* From the box, users can click the stock symbol which takes the user to stock's show page.
+
+![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
+
 * The stock show page shows the stock's current price. It also shows a graph which shows the stock's performance for the day. 
 * On the stock show page, the about section tells about the company's key statistics. 
 * On the account page, a user can see a more detailed view of the stocks owned by the user. 
@@ -23,7 +26,6 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 
 3. Stocks and WatchList Box.
 
-![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
