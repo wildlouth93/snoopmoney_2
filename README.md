@@ -46,10 +46,12 @@ This project was designed and built in under two weeks.
 
 ![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
 
-3. Stocks and WatchList Box.
+3. Stocks and WatchList Box. This box allows users to move from the dashboard to individual stock pages, while also providing a snippet about the stock's performance. 
 
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
 #### Notes
 1. Issues exist with some of the information being passed from the API. This explains why some information in the news feed and about section seems hardcoded in. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information. 
+
+2. Name. Check out this article if you're curious why the stock is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
