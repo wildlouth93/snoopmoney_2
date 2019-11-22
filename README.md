@@ -6,6 +6,8 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 
 ## Features
 * User Authentication using BCrypt
+
+### Dashboard
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
 * In the dashboard, users have access to a scrollable box which contains the user's stock that they currently own or are watching. 
 * From the box, users can click the stock symbol which takes the user to stock's show page.
