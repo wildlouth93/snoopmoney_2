@@ -36,4 +36,4 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
-
+![](https://user-images.githubusercontent.com/29221213/69450956-e712b200-0d23-11ea-8974-01755f065f67.png)
