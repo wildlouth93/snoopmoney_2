@@ -61,7 +61,7 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-group :product do 
+group :production do 
   gem 'rails_12factor'
 end
 
