@@ -13,20 +13,20 @@ import MiniChart2 from '../stocks/mini_chart';
 class Main extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { loading: true };
   }
 
   componentDidMount() {
-    this.props.requestHoldings();
-    this.props.requestWatchListItems()
-      .then(() => this.setState({ loading: false }));
+    if (this.props.currentUser) {
+      this.props.requestHoldings();
+      this.props.requestWatchListItems();
+    }
   }
 
   render() {
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
 
-    if (this.state.loading) {
-      return <div className="loader-container"><div className="loader"></div></div>
+    if (!currentUser) {
+      return <MainOut />
     }
 
     if (holdings.length === 0) return null; 

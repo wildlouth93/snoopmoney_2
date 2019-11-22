@@ -1,7 +1,7 @@
 class Api::WatchListItemsController < ApplicationController
   include Api::SessionsHelper 
 
-  before_action :require_logged_in
+  # before_action :require_logged_in
 
   def index 
     client = Client.new 

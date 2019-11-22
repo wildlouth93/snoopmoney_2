@@ -17,7 +17,7 @@ user5 = User.create( email: 'smuser5@gmail.com', first_name: 'Sm5', last_name: '
 
 holding1 = Holding.create( user_id: user1.id, ticker: 'MSFT', num_shares: 10, cost_basis: 50);
 holding2 = Holding.create( user_id: user1.id, ticker: 'AMZN', num_shares: 10, cost_basis: 50);
-holding3 = Holding.create( user_id: user1.id, ticker: 'APPL', num_shares: 10, cost_basis: 50);
+holding3 = Holding.create( user_id: user1.id, ticker: 'AAPL', num_shares: 10, cost_basis: 50);
 holding4 = Holding.create( user_id: user1.id, ticker: 'GE', num_shares: 10, cost_basis: 50);
 holding5 = Holding.create( user_id: user1.id, ticker: 'FB', num_shares: 10, cost_basis: 50);
 
@@ -25,4 +25,4 @@ watch_list_item1 = WatchListItem.create( user_id: user1.id, ticker: 'FB');
 watch_list_item2 = WatchListItem.create( user_id: user1.id, ticker: 'AMZN');
 watch_list_item3 = WatchListItem.create( user_id: user1.id, ticker: 'UA');
 watch_list_item4 = WatchListItem.create( user_id: user1.id, ticker: 'GOOGL');
-watch_list_item5 = WatchListItem.create( user_id: user1.id, ticker: 'APPL');
+watch_list_item5 = WatchListItem.create( user_id: user1.id, ticker: 'AAPL');
