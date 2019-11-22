@@ -42,6 +42,8 @@ This project was designed and built in under two weeks.
 
 2. Graphs. The stock graph used in the stock page integrates a library called Recharts. The graph shown takes data passed in from the API and creates interactive graphs. The portfolio graph is worth noting. This graph requires taking in the data from the API and manipulating it into a combined data structure so that the user can see the overall performance of the portfolio.
 
+![](https://user-images.githubusercontent.com/29221213/69453158-ef212080-0d28-11ea-8f28-3b800f8a7bd2.png)
+
 ![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
 
 3. Stocks and WatchList Box.
