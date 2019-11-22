@@ -17,11 +17,16 @@ Features
 Highlights 
 1. Stock API. The stock information is powered by an external API, IEX Cloud Console. This API feeds stock information to the front-end in real time. With this feature, the app can access all the relevant stock information needed to power the stock page. By integrating the app with the stock API, the app may be scaled to allow the user to interact with any stock the API may access.
 2. Graphs. The stock graph used in the stock page integrates a library called Recharts. The graph shown takes the 
+![](https://user-images.githubusercontent.com/29221213/69449274-29d28b00-0d20-11ea-9e70-9ff4edb3135f.png)
+
+![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
+
+3. Stocks and WatchList Box.
 
 ![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
-![](https://user-images.githubusercontent.com/29221213/69449274-29d28b00-0d20-11ea-9e70-9ff4edb3135f.png)
 
-![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
+
+
