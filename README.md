@@ -38,20 +38,20 @@ This project was designed and built in under two weeks.
 ![](https://user-images.githubusercontent.com/29221213/69450956-e712b200-0d23-11ea-8974-01755f065f67.png)
 
 ## Highlights 
-1. Stock API. The stock information is powered by an external API, IEX Cloud Console. This API feeds stock information to the front-end in real time. With this feature, the app can access all the relevant stock information needed to power the stock page. By integrating the app with the stock API, the app may be scaled to allow the user to interact with any stock the API may access. [IEX Cloud Console](https://iexcloud.io/)
+1. **Stock API.** The stock information is powered by an external API, IEX Cloud Console. This API feeds stock information to the front-end in real time. With this feature, the app can access all the relevant stock information needed to power the stock page. By integrating the app with the stock API, the app may be scaled to allow the user to interact with any stock the API may access. [IEX Cloud Console](https://iexcloud.io/)
 
-2. Graphs. The stock graph used in the stock page integrates a library called Recharts. The graph shown takes data passed in from the API and creates interactive graphs. The portfolio graph is worth noting. This graph requires taking in the data from the API and manipulating it into a combined data structure so that the user can see the overall performance of the portfolio.
+2. **Graphs.** The stock graph used in the stock page integrates a library called Recharts. The stock graph takes data passed in from the API and creates interactive graphs. The portfolio graph is worth noting. This graph requires taking in the data from the API and manipulating it into a combined data structure so that the user can see the overall performance of the portfolio.
 
 ![](https://user-images.githubusercontent.com/29221213/69453158-ef212080-0d28-11ea-8f28-3b800f8a7bd2.png)
 
 ![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
 
-3. Stocks and WatchList Box. This box allows users to move from the dashboard to individual stock pages, while also providing a snippet about the stock's performance. 
+3. **Stocks and WatchList Box.** This box allows users to move from the dashboard to individual stock pages, while also providing a snippet about the stock's performance. 
 
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
 #### Notes
-1. API Test Issues. Issues exist with some of the information being passed from the API for the news feed and about section. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information for visual purposes.
+1. **API Test Issues.** Issues exist with some of the information being passed from the API for the news feed and about section. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information for visual purposes.
 
-2. Name. Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
+2. **Name.** Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
