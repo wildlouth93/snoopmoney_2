@@ -4,6 +4,8 @@
 
 Welcome to SnoopMoney, a single-page clone of Robinhood. This app uses Rails and Postgres on the backend, and uses React and Rails on the frontend. Combining these libraries with an external Stock API, users can see in real-time the performance of stocks the user currently owns or watches.  
 
+This project was designed and built in under two weeks. 
+
 ![](https://user-images.githubusercontent.com/29221213/69450047-dc571d80-0d21-11ea-9b9f-e9e1e535d92b.png)
 
 ## Features
