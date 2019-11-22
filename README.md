@@ -25,7 +25,6 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This
 
 ### Account Page 
 * On the account page, a user can see a more detailed view of the stocks owned by the user. 
-* Additionally, the user can see information about the current account balance and portfolio value. The user can also see key information related to its ownership of individual stocks.
 * This page combines information collected from the Stock API and the backend holdings table to give users a real-time snapshot of their stocks performance. 
 * **Highlighted Feature: Account Table:**
 
