@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StockChart from './stock_chart';
 import NewsItem from '../main/news_item';
-import BuySellForm from './buy_sell_form';
+import BuySellForm from './buy_form';
 
 
 class StockShow extends React.Component {
@@ -122,7 +122,7 @@ class StockShow extends React.Component {
         <div className="stock-interaction">
           {
             // <div>
-            //   <BuySellForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} />
+            //   {/* <BuyForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} /> */}
             //   {/* <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/> */}
             // </div>
           }

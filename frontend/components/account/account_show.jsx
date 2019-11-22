@@ -104,7 +104,7 @@ class AccountShow extends React.Component {
                       let equity = parseInt((holding.price * holding.num_shares)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   
                       return <tr key={holding.ticker}>
-                        <th>{holding.ticker}</th>
+                        <th><Link className="account-stock-link" to={`/stocks/${holding.ticker}`}>{holding.ticker}</Link></th>
                         <td>{holding.num_shares}</td>
                         <td>${price}</td>
                         <td>${averageCost}</td>

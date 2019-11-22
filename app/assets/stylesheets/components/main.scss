@@ -1,17 +1,19 @@
 .main-side-bar {
   height: 350px;
   width: 250px;
-  // position: fixed;
+  position: fixed;
   z-index: 1;
-  // top: 100px;
-  // right: 10px;
-    /* background-color: black; */
+  top: 100px;
+  right: 10px;
+  left: 900px;
+  background-color: white;
   overflow-x: hidden;
   // padding-top: 20px;
   list-style: none; 
   padding-top: 0;
   box-shadow: 1px 1px 22px -7px lightgray;
   // bottom: 100px; 
+
 }
 
 .main-side-bar .side-bar-el { 
@@ -31,7 +33,7 @@
   position: flex; 
   right: 300px; 
   width: 60%; 
-  // margin-left: 100px; 
+  margin-left: 100px; 
   border-top: 1px solid lightgray;
 }
 
@@ -224,7 +226,7 @@
   color: $rh_green; 
 }
 
-.side-bar-charts {
-  display: flex;
-  justify-content: space-evenly;
-}
+// .side-bar-charts {
+//   display: flex;
+//   justify-content: space-evenly;
+// }
