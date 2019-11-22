@@ -52,53 +52,55 @@ class Main extends React.Component {
           <h3>${networth}</h3>
           <p>{(holdings[0].change_percent_s)}Today</p>
        </div>
-        <div className="main-charts">
-          {/* <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/> */}
-          { <StockChart data={data2} dataKey="average" className="main-chart"/> }
-          
-          <ul>
-            <li>1D</li>
-            <li>1W</li>
-            <li>1M</li>
-            <li>3M</li>
-            <li>1Y</li>
-            <li>ALL</li>
-          </ul>
-        </div>
-        <div className="main-side-bar">
-          <div className="side-bar-head">
-            <h3>Stocks</h3>
-            <img className="ellipsis" src={window.images.ellipsis_image} />
+       <div className="side-bar-charts">
+          <div className="main-charts">
+            {/* <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/> */}
+            { <StockChart data={data2} dataKey="average" className="main-chart"/> }
+            
+            <ul>
+              <li>1D</li>
+              <li>1W</li>
+              <li>1M</li>
+              <li>3M</li>
+              <li>1Y</li>
+              <li>ALL</li>
+            </ul>
           </div>
-          {
-            holdings.map(holding => (
-                <HoldingIndexItem className="side-bar-el"
-                  holding={holding}
-                  key={holding.ticker}
+          <div className="main-side-bar">
+            <div className="side-bar-head">
+              <h3>Stocks</h3>
+              <img className="ellipsis" src={window.images.ellipsis_image} />
+            </div>
+            {
+              holdings.map(holding => (
+                  <HoldingIndexItem className="side-bar-el"
+                    holding={holding}
+                    key={holding.ticker}
+                  />
+                  /* <p>{holding.ticker}</p>
+                  <p>{holding.num_shares}</p>
+                  {/* <p>{holding.price}</p>
+                  <p>{holding.quote.change_percent_s}</p>
+                  <p>{holding.price * holding.num_shares}</p>
+                  <p>{holding.quote.change}</p> */
+              )) 
+            }
+            {
+            
+            }
+            <div className="side-bar-head">
+              <h3>WatchList</h3>
+              <img className="ellipsis" src={window.images.ellipsis_image} />
+            </div>
+            {
+              watchlistitems.map(watchlistitem => (
+                <WatchListItemsIndexItem className="side-bar-el"
+                  watchlistitem={watchlistitem}
+                  key={watchlistitem.ticker}
                 />
-                /* <p>{holding.ticker}</p>
-                <p>{holding.num_shares}</p>
-                {/* <p>{holding.price}</p>
-                <p>{holding.quote.change_percent_s}</p>
-                <p>{holding.price * holding.num_shares}</p>
-                <p>{holding.quote.change}</p> */
-            )) 
-          }
-          {
-          
-          }
-          <div className="side-bar-head">
-            <h3>WatchList</h3>
-            <img className="ellipsis" src={window.images.ellipsis_image} />
+              ))
+            }
           </div>
-          {
-            watchlistitems.map(watchlistitem => (
-              <WatchListItemsIndexItem className="side-bar-el"
-                watchlistitem={watchlistitem}
-                key={watchlistitem.ticker}
-              />
-            ))
-          }
         </div>
         <br />
         <div className="main-news">
@@ -123,6 +125,7 @@ class Main extends React.Component {
             ))
           }
         </div>
+      <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
       </div>
     ) : (
         <div>

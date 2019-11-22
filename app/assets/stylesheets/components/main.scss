@@ -1,17 +1,17 @@
 .main-side-bar {
-  height: 600px;
+  height: 350px;
   width: 250px;
-  position: fixed;
+  // position: fixed;
   z-index: 1;
-  top: 100px;
-  right: 10px;
+  // top: 100px;
+  // right: 10px;
     /* background-color: black; */
   overflow-x: hidden;
-  padding-top: 20px;
+  // padding-top: 20px;
   list-style: none; 
   padding-top: 0;
   box-shadow: 1px 1px 22px -7px lightgray;
-  bottom: 100px; 
+  // bottom: 100px; 
 }
 
 .main-side-bar .side-bar-el { 
@@ -31,7 +31,8 @@
   position: flex; 
   right: 300px; 
   width: 60%; 
-  margin-left: 100px; 
+  // margin-left: 100px; 
+  border-top: 1px solid lightgray;
 }
 
 .main-news {
@@ -140,7 +141,7 @@
 }
 
 .main-info {
-  border-bottom: 0.5px dotted gray;
+  // border-bottom: 0.5px dotted gray;
   width: 600px; 
 }
 
@@ -221,4 +222,9 @@
 
 .main-news .news-item .news-content h6 {
   color: $rh_green; 
+}
+
+.side-bar-charts {
+  display: flex;
+  justify-content: space-evenly;
 }

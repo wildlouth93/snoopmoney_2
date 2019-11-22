@@ -25,7 +25,7 @@ class AccountShow extends React.Component {
     if (this.state.loading) {
       return <div className="loader-container"><div className="loader"></div></div>
     }
-    
+
     return (
       <div className="account-show">
         <div className="account-bar">
@@ -106,6 +106,7 @@ class AccountShow extends React.Component {
             </div>
           </div>
         </div>
+        <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
       </div>
     )
   }

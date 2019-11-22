@@ -54,3 +54,14 @@
 .stock-show .main-charts {
   padding-bottom: 10px; 
 }
+
+.stock-charts {
+  margin-left: 100px; 
+}
+
+.stock-charts > ul {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  padding-left: 5px;
+}

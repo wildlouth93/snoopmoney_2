@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StockChart from './stock_chart';
 import NewsItem from '../main/news_item';
+import BuySellForm from './buy_sell_form';
 
 
 class StockShow extends React.Component {
@@ -28,7 +29,7 @@ class StockShow extends React.Component {
           <h3>${this.props.stock.price}</h3>
           <p>{(this.props.stock.change_percent_s)}Today</p>
         </div>
-        <div className="main-charts">
+        <div className="main-charts" className="stock-charts">
           {/* <StockChart data={this.props.stock.one_day_chart} dataKey="average"/> */}
           {/* <br/> */}
           <StockChart data={this.props.stock.one_month_chart} dataKey="close"/>
@@ -105,6 +106,7 @@ class StockShow extends React.Component {
 
             </ul>
           </div>
+          <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
         </div>
         {/* <div className="stock-news">
           {
@@ -117,14 +119,14 @@ class StockShow extends React.Component {
             ))
           }
         </div> */}
-        {/* <div className="stock-interaction">
+        <div className="stock-interaction">
           {
-            <div>
-              <BuySellForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} />
-              <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/>
-            </div>
+            // <div>
+            //   <BuySellForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} />
+            //   {/* <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/> */}
+            // </div>
           }
-        </div> */}
+        </div>
       </div>
     )
   }
