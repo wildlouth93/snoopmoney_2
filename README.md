@@ -10,6 +10,9 @@ This project was designed and built in under two weeks.
 
 ## Features
 * User Authentication using BCrypt
+* Dashboard 
+* Stock Page 
+* Account Page 
 
 ### Dashboard
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
@@ -46,5 +49,5 @@ This project was designed and built in under two weeks.
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
-###Notes
+#### Notes
 1. Issues exist with some of the information being passed from the API. This explains why some information in the news feed and about section seems hardcoded in. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information. 
