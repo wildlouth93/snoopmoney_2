@@ -18,3 +18,4 @@ Highlights
 1. Stock API. The stock information is powered by an external API, IEX Cloud Console. This API feeds stock information to the front-end in real time. With this feature, the app can access all the relevant stock information needed to power the stock page. By integrating the app with the stock API, the app may be scaled to allow the user to interact with any stock the API may access.
 2. Graphs. The stock graph used in the stock page integrates a library called Recharts. The graph shown takes the 
 
+![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
