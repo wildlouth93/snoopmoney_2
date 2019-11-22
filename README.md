@@ -19,3 +19,5 @@ Highlights
 2. Graphs. The stock graph used in the stock page integrates a library called Recharts. The graph shown takes the 
 
 ![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
+
+![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
