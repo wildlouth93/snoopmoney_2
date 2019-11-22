@@ -4,6 +4,8 @@
 
 Welcome to SnoopMoney, a single-page clone of Robinhood. This 
 
+![](https://user-images.githubusercontent.com/29221213/69450047-dc571d80-0d21-11ea-9b9f-e9e1e535d92b.png)
+
 Features
 * User Authentication using BCrypt
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
@@ -27,4 +29,4 @@ Highlights
 
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
-![](https://user-images.githubusercontent.com/29221213/69450047-dc571d80-0d21-11ea-9b9f-e9e1e535d92b.png)
+
