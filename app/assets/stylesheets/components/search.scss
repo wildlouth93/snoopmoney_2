@@ -1,0 +1,94 @@
+.search-results {
+  position: absolute;
+  color: black;
+  font-weight: bold;
+  border: 1px solid #f5f5f5;
+  border-radius: 4px;
+  margin: 0 20px 20px 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+.auto > *{
+  margin-left: 30px;
+}
+
+.auto > input{
+  margin: 10px 30px 0 30px;
+  border: 1px solid black;
+}
+
+.auto li{
+  cursor: pointer;
+  list-style-type: square;
+}
+
+.auto-enter {
+  opacity: 0.01;
+  transform: translateY(500%);
+}
+
+.auto-enter.auto-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms ease-in, transform 700ms ease-in;
+}
+
+.auto-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auto-leave.auto-leave-active {
+  opacity: 0.01;
+  transform: translateY(500%);
+  transition: opacity 700ms ease-in, transform 700ms ease-in;
+}
+
+.auto:hover {
+  visibility: visible;
+}
+
+.auto:active {
+  visibility: visible;
+}
+
+.auto:focus {
+  visibility: visible;
+}
+
+.auto {
+  visibility: hidden;
+  z-index: 4;
+  margin-top: 15px;
+}
+
+.search-input {
+  display: flex; 
+  visibility: visible;
+  height: 25px;
+  width: 340px;
+  border-radius: 4px;
+  font-size: 17px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 1px solid $rh_green;
+}
+
+.auto > .search-results {
+  width: 322px;
+  height: 30px;
+}
+
+.auto > .search-results a:hover {
+  color: $rh_green;
+}

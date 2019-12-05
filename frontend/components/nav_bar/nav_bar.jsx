@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AutoCompleteContainer from '../search/auto_complete_container';
 
 export default ({ currentUser, logout, pathname, clearErrors}) => {
   let sessionLinks; 
@@ -21,7 +22,10 @@ export default ({ currentUser, logout, pathname, clearErrors}) => {
   const display = currentUser ? (
     <div className="in-nav-bar">
       <li className="logo"><Link to="/" ><img src={window.images.nav_bar_logo_image} /></Link></li>
-      <li><input type="text" name="search" placeholder="Search.."/></li>
+      <li>
+        {/* <input type="text" name="search" placeholder="Search.."/> */}
+        <AutoCompleteContainer />
+      </li>
       <li>
         <ul>
           <li><Link to="/">Home</Link></li>
