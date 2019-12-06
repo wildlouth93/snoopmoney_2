@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RECEIVE_WATCHLIST_ITEM } from '../../actions/watchlistitem_actions';
 import HoldingIndexItem from '../holdings/holding_index_item';
+import AccountPieChart from './account_pie_chart';
+import AccountPieChart2 from './account_pie_chart_2';
+
 
 class AccountShow extends React.Component {
   constructor(props) {
@@ -21,6 +24,16 @@ class AccountShow extends React.Component {
     let stockValue = parseInt(currentUser.net_worth - currentUser.account_balance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let percentCash = parseInt(100 * (currentUser.account_balance / currentUser.net_worth)).toFixed(2);
     let cashValue = parseInt(currentUser.account_balance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let data3 = [
+      { name: "Stock Value", value: (currentUser.net_worth - currentUser.account_balance) },
+      { name: "Cash Value", value: parseFloat(currentUser.account_balance) },
+    ];
+
+    let data4 = [];
+
+    holdings.map((holding, i) => {
+      data4[i] = { name: holding.ticker, value: (holding.price * holding.num_shares)}
+    });
 
     if (this.state.loading) {
       return <div className="loader-container"><div className="loader"></div></div>
@@ -63,7 +76,9 @@ class AccountShow extends React.Component {
               </ul>
             </div>
             <div className="top-chart">
-                <img src={window.images.donut_chart_image}/>
+             {/* <TestPieChart /> */}
+              <AccountPieChart data={data3} dataKey={"value"}/>
+                {/* <img src={window.images.donut_chart_image}/> */}
             </div>
           </div>
           <h3>Stocks</h3>
@@ -82,11 +97,12 @@ class AccountShow extends React.Component {
                 </thead>
                 <tbody>
                   {
-                    holdings.map(holding => {
+                    holdings.map((holding, i) => {
                       let price = parseInt(holding.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                       let averageCost = parseInt(holding.cost_basis).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                       let totalReturn = parseInt((holding.price - holding.cost_basis) * holding.num_shares).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                       let equity = parseInt((holding.price * holding.num_shares)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  
                       return <tr key={holding.ticker}>
                         <th>{holding.ticker}</th>
                         <td>{holding.num_shares}</td>
@@ -102,7 +118,8 @@ class AccountShow extends React.Component {
             </div>
 
             <div className="bottom-chart">
-              <img src={window.images.donut_chart_image} />
+              {/* <img src={window.images.donut_chart_image} /> */}
+              <AccountPieChart2 data={data4} dataKey={"value"} />
             </div>
           </div>
         </div>
