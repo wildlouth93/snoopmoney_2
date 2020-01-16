@@ -10,7 +10,6 @@ class Api::WatchListItemsController < ApplicationController
       watchlistitem.price = client.get_price(watchlistitem.ticker)
       watchlistitem.change_percent_s = client.get_quote(watchlistitem.ticker).change_percent_s
       watchlistitem.one_day_chart = client.get_one_day_chart(watchlistitem.ticker)
-      watchlistitem.news = client.get_company_news(watchlistitem.ticker, 5)
     end
   end
 
@@ -23,7 +22,6 @@ class Api::WatchListItemsController < ApplicationController
     @watch_list_item.price = client.get_price(@watch_list_item.ticker)
     @watch_list_item.change_percent_s = client.get_quote(@watch_list_item.ticker).change_percent_s
     @watch_list_item.one_day_chart = client.get_one_day_chart(@watch_list_item.ticker)
-    @watchl_list_item.news = client.get_company_news(@watch_list_item.ticker, 5)
     
     if @watch_list_item.save 
       render :show 
@@ -40,7 +38,6 @@ class Api::WatchListItemsController < ApplicationController
     @watch_list_item.price = client.get_price(@watch_list_item.ticker)
     @watch_list_item.change_percent_s = client.get_quote(@watch_list_item.ticker).change_percent_s
     @watch_list_item.one_day_chart = client.get_one_day_chart(@watch_list_item.ticker)
-    @watch_list_item.news = client.get_company_news(@watch_list_item.ticker, 5)
   
   end
 

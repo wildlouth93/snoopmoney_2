@@ -15,7 +15,8 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      stockNews: {}
+      stockNews: {},
+      networth: null
     }
 
   // this.getNews = this.getNews.bind(this);
@@ -23,36 +24,53 @@ class Main extends React.Component {
 
   componentDidMount() {
     if (this.props.currentUser) {
-      this.props.requestHoldings();
-      this.props.requestWatchListItems();
-      // this.getNews();
+      this.props.requestHoldings()
+        .then(() => {
+          let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+          this.setState({networth: networth})
+        });
+      this.props.requestWatchListItems()
+        .then(() => {
+          this.getNews();
+        })
     }
   }
 
-  // async getNews() {
+  getNews() {
+    let stockSymbols = '';
+    this.props.watchlistitems.map((watchlistitem, i) => (
+      stockSymbols += watchlistitem.ticker
+    ));
+    console.log(this.props.watchlistitems);
+    console.log(stockSymbols);
     
-  //   let stockSymbol = 'AAPL'
-  //   let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
+    let stockSymbol = 'AAPL'
+    let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
+    // let data; 
 
-  //   const api_call = await fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbol}&accessKey=${API_Key}`);
-
-  //   const data = await api_call.json();
-
-  //   this.setState({ stockNews: data });
-
-  // }
+    fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbol}&accessKey=${API_Key}`)
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState({ stockNews: result.result_data });
+      })
+  }
 
   render() {
-    // console.log(this.state.stockNews);
+    console.log(this.state.stockNews);
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
+    console.log(watchlistitems);
 
     if (!currentUser) {
       return <MainOut />
     }
 
+    if (!this.state.networth)  {
+      return <div className="loader-container"><div className="loader"></div></div>
+    }
+
     if (holdings.length === 0) return null; 
     if (watchlistitems.length === 0) return null; 
-    let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    // let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let data2 = Array.apply(null, Array(39)).map(function () { return { average: 0 } }); 
 
     holdings.forEach(holding => {
@@ -70,7 +88,7 @@ class Main extends React.Component {
     const main = currentUser ? (
       <div>
         <div className="main-info">
-          <h3>${networth}</h3>
+          <h3>${this.state.networth}</h3>
           {/* <p>{data2[38] - data2[0]}</p> */}
           <p>{(holdings[0].change_percent_s)}Today</p>
        </div>
@@ -125,7 +143,7 @@ class Main extends React.Component {
           </div>
         </div>
         <br />
-        <div className="main-news">
+        {/* <div className="main-news">
           <h3>News</h3>
           {
             watchlistitems.map((watchlistitem, i) => (
@@ -146,7 +164,7 @@ class Main extends React.Component {
               ))
             ))
           }
-        </div>
+        </div> */}
       <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
       </div>
     ) : (

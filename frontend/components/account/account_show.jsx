@@ -19,14 +19,16 @@ class AccountShow extends React.Component {
 
   render(){
     const { currentUser, logout, holdings} = this.props; 
-    let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    let percentStock = parseInt(100 * (1 - (currentUser.account_balance / currentUser.net_worth))).toFixed(2);
-    let stockValue = parseInt(currentUser.net_worth - currentUser.account_balance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    let percentCash = parseInt(100 * (currentUser.account_balance / currentUser.net_worth)).toFixed(2);
-    let cashValue = parseInt(currentUser.account_balance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let userNetWorth = currentUser.net_worth;
+    let userAccountBalance = currentUser.account_balance;
+    let networth = parseInt(userNetWorth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let percentStock = parseInt(100 * (1 - (userAccountBalance / userNetWorth))).toFixed(2);
+    let stockValue = parseInt(userNetWorth - userAccountBalance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let percentCash = parseInt(100 * (userAccountBalance / userNetWorth)).toFixed(2);
+    let cashValue = parseInt(userAccountBalance).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let data3 = [
-      { name: "Stock Value", value: (currentUser.net_worth - currentUser.account_balance) },
-      { name: "Cash Value", value: parseFloat(currentUser.account_balance) },
+      { name: "Stock Value", value: (userNetWorth - userAccountBalance) },
+      { name: "Cash Value", value: parseFloat(userAccountBalance) },
     ];
 
     let data4 = [];

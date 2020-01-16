@@ -11,19 +11,20 @@ class Stock
   end
 
   def initialize(symbol)
-    client = Client.new 
+    puts "New stock inialized"
+    client = Client.new(symbol)
     @symbol = symbol.upcase 
     @price = client.get_price(symbol)
     @quote = client.get_quote(symbol)
-    @company_info = client.get_company_info(symbol)
-    @company_news = client.get_company_news(symbol, 5)
-    @company_chart = client.get_company_chart(symbol)
+    @company_info = client.get_company_info();
+    # @company_news = client.get_company_news(symbol, 5)
+    @company_chart = client.get_company_chart();
     @one_day_chart = client.get_one_day_chart(symbol)
-    @one_month_chart = client.get_one_month_chart(symbol)
-    @one_year_chart = client.get_one_year_chart(symbol)
-    @company_key_stats = client.get_company_key_stats(symbol)
-    @company_earnings = client.get_company_earnings(symbol)
-    @change_percent_s = client.get_quote(symbol).change_percent_s
+    @one_month_chart = client.get_one_month_chart();
+    @one_year_chart = client.get_one_year_chart();
+    @company_key_stats = client.get_company_key_stats();
+    # @company_earnings = client.get_company_earnings();
+    @change_percent_s = @quote.change_percent_s;
 
     # @company_dividends = client.get_company_dividends(symbol, 1y)
     # @income_statement = client.get_company_income_statement(symbol)
@@ -32,20 +33,20 @@ class Stock
   end
 
   def update(symbol)
-    client = Client.new 
+    client = Client.new(symbol)
  
     @price = client.get_price(symbol)
     @quote = client.get_quote(symbol)
 
     # @company_info = client.get_company_info(symbol)
-    @company_news = client.get_company_news(symbol, 5)
-    @company_chart = client.get_company_chart(symbol)
-    @one_day_chart = client.get_one_day_chart(symbol)
-    @one_month_chart = client.get_one_month_chart(symbol)
-    @one_year_chart = client.get_one_year_chart(symbol)
-    @company_key_stats = client.get_company_key_stats(symbol)
-    @company_earnings = client.get_company_earnings(symbol)
-    @change_percent_s = client.get_quote(symbol).change_percent_s
+    # @company_news = client.get_company_news(symbol, 5)
+    @company_chart = client.get_company_chart();
+    @one_day_chart = client.get_one_day_chart(symbol);
+    @one_month_chart = client.get_one_month_chart();
+    @one_year_chart = client.get_one_year_chart();
+    @company_key_stats = client.get_company_key_stats();
+    # @company_earnings = client.get_company_earnings()
+    @change_percent_s = @quote.change_percent_s;
 
     # self.company_logo = client.get_company_logo(symbol)
      # self.company_dividends = client.get_company_dividends(symbol)

@@ -34,25 +34,25 @@ class User < ApplicationRecord
   end
 
   def sell_stock(ticker)
-    client = Client.new
+    client = Client.new(ticker)
     holding = Holding.find_by(ticker: ticker, user_id: self.id)
-    self.account_balance = self.account_balance + ((client.get_price(holding.ticker)) * holding.num_shares)
+    self.account_balance = self.account_balance + ((client.get_price(ticker)) * holding.num_shares)
     self.save 
     return self.account_balance
   end
 
   def buy_stock(ticker)
-    client = Client.new
+    client = Client.new(ticker)
     holding = Holding.find_by(ticker: ticker, user_id: self.id)
-    self.account_balance = self.account_balance - ((client.get_price(holding.ticker)) * holding.num_shares)
+    self.account_balance = self.account_balance - ((client.get_price(ticker)) * holding.num_shares)
     self.save 
     return self.account_balance 
   end
 
   def buy_more_stock(ticker)
-    client = Client.new
+    client = Client.new(ticker)
     holding = Holding.find_by(ticker: ticker, user_id: self.id)
-    self.account_balance = self.account_balance - ((client.get_price(holding.ticker)) * holding.num_shares)
+    self.account_balance = self.account_balance - ((client.get_price(ticker)) * holding.num_shares)
     self.save 
     return self.account_balance 
   end
@@ -69,8 +69,10 @@ class User < ApplicationRecord
     client = Client.new
     total = self.account_balance
     self.holdings.each do |holding| 
-      total += client.get_price(holding.ticker) * holding.num_shares
+      share_price = client.get_price(holding.ticker)
+      total += (share_price * holding.num_shares)
     end
+    puts "Net worth calculated"
     total 
   end
 

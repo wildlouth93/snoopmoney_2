@@ -16,9 +16,6 @@ json.set! :company_name, stock.quote.company_name
 json.set! :week_52_high, stock.quote.week_52_high
 json.set! :week_52_low, stock.quote.week_52_low
 
-
-json.extract! stock, :company_news 
-
 json.extract! stock, :company_chart
 json.extract! stock, :one_day_chart
 json.extract! stock, :one_month_chart
