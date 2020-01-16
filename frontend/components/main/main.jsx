@@ -12,17 +12,38 @@ import MiniChart2 from '../stocks/mini_chart';
 
 class Main extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    this.state = {
+      stockNews: {}
+    }
+
+  // this.getNews = this.getNews.bind(this);
   }
 
   componentDidMount() {
     if (this.props.currentUser) {
       this.props.requestHoldings();
       this.props.requestWatchListItems();
+      // this.getNews();
     }
   }
 
+  // async getNews() {
+    
+  //   let stockSymbol = 'AAPL'
+  //   let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
+
+  //   const api_call = await fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbol}&accessKey=${API_Key}`);
+
+  //   const data = await api_call.json();
+
+  //   this.setState({ stockNews: data });
+
+  // }
+
   render() {
+    console.log(this.state.stockNews);
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
 
     if (!currentUser) {
@@ -50,6 +71,7 @@ class Main extends React.Component {
       <div>
         <div className="main-info">
           <h3>${networth}</h3>
+          {/* <p>{data2[38] - data2[0]}</p> */}
           <p>{(holdings[0].change_percent_s)}Today</p>
        </div>
        <div className="side-bar-charts">

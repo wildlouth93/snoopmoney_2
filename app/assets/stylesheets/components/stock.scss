@@ -57,11 +57,16 @@
 
 .stock-charts {
   margin-left: 100px; 
+  width: 500px;
 }
 
 .stock-charts > ul {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 40%;
   padding-left: 5px;
+}
+
+.selected {
+  text-decoration: underline;
 }

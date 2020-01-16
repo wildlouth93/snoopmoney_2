@@ -8,13 +8,87 @@ import BuySellForm from './buy_form';
 class StockShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {loading: true};
+    this.state = {
+      loading: true, 
+      oneDay: false,
+      oneWeek: false, 
+      oneMonth: true,
+      threeMonth: false, 
+      oneYear: false
+    };
+    this.toggleDayState = this.toggleDayState.bind(this);
+    this.toggleWeekState = this.toggleWeekState.bind(this);
+    this.toggleMonthState = this.toggleMonthState.bind(this);
+    this.toggleThreeMonthState = this.toggleThreeMonthState.bind(this);
+    this.toggleYearState = this.toggleYearState.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchStock(this.props.match.params.symbol)
       .then(() => this.setState({loading: false}));
   }
+
+  toggleDayState() {
+    if (this.state.oneDay === false) {
+      this.setState({
+        oneDay: true,  
+        oneWeek: false, 
+        oneMonth: false, 
+        threeMonth: false,
+        oneYear: false
+      })
+    }
+  }
+
+  toggleWeekState() {
+    if (this.state.oneWeek === false) {
+      this.setState({
+        oneDay: false,
+        oneWeek: true,
+        oneMonth: false,
+        threeMonth: false,
+        oneYear: false
+      })
+    }
+  }
+
+  toggleMonthState() {
+    if (this.state.oneMonth === false) {
+      this.setState({
+        oneDay: false,
+        oneWeek: false,
+        oneMonth: true,
+        threeMonth: false,
+        oneYear: false
+      })
+    }
+  }
+
+  toggleThreeMonthState() {
+    if (this.state.threeMonth === false) {
+      this.setState({
+        oneDay: false,
+        oneWeek: false,
+        oneMonth: false,
+        threeMonth: true,
+        oneYear: false
+      })
+    }
+  }
+
+  toggleYearState() {
+    if (this.state.oneYear === false) {
+      this.setState({
+        oneDay: false,
+        oneWeek: false,
+        oneMonth: false,
+        threeMonth: false,
+        oneYear: true
+      })
+    }
+  }
+
+
 
   render(){ 
     let employees = parseInt(this.props.stock.employees).toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -23,6 +97,74 @@ class StockShow extends React.Component {
     if (this.state.loading) {
       return <div className="loader-container"><div className="loader"></div></div>
     }
+
+    let threeMonth = this.props.stock.one_year_chart.slice(200);
+    let oneWeek = this.props.stock.company_chart.slice(this.props.stock.company_chart.length - 5);
+
+    let stockChart;
+    let list; 
+
+    if (this.state.oneDay) {
+      stockChart = <StockChart data={this.props.stock.one_day_chart} dataKey="average" />
+      list = <ul>
+        <li className="selected" onClick={this.toggleDayState}>1D</li>
+        <li onClick={this.toggleWeekState}>1W</li>
+        <li onClick={this.toggleMonthState}>1M</li>
+        <li onClick={this.toggleThreeMonthState}>3M</li>
+        <li onClick={this.toggleYearState}>1Y</li>
+        <li>ALL</li>
+      </ul>
+    }
+
+    if (this.state.oneWeek) {
+      stockChart = <StockChart data={oneWeek} dataKey="close" />
+      list = <ul>
+        <li onClick={this.toggleDayState}>1D</li>
+        <li className="selected" onClick={this.toggleWeekState}>1W</li>
+        <li onClick={this.toggleMonthState}>1M</li>
+        <li onClick={this.toggleThreeMonthState}>3M</li>
+        <li onClick={this.toggleYearState}>1Y</li>
+        <li>ALL</li>
+      </ul>
+    }
+
+    if (this.state.oneMonth) {
+      stockChart = <StockChart data={this.props.stock.one_month_chart} dataKey="close" />
+      list = <ul>
+        <li onClick={this.toggleDayState}>1D</li>
+        <li onClick={this.toggleWeekState}>1W</li>
+        <li className="selected" onClick={this.toggleMonthState}>1M</li>
+        <li onClick={this.toggleThreeMonthState}>3M</li>
+        <li onClick={this.toggleYearState}>1Y</li>
+        <li>ALL</li>
+      </ul>
+    }
+
+    if (this.state.threeMonth) {
+      stockChart = <StockChart data={threeMonth} dataKey="close" />
+      list = <ul>
+        <li onClick={this.toggleDayState}>1D</li>
+        <li onClick={this.toggleWeekState}>1W</li>
+        <li onClick={this.toggleMonthState}>1M</li>
+        <li className="selected" onClick={this.toggleThreeMonthState}>3M</li>
+        <li onClick={this.toggleYearState}>1Y</li>
+        <li>ALL</li>
+      </ul>
+    }
+
+    if (this.state.oneYear) {
+      stockChart = <StockChart data={this.props.stock.one_year_chart} dataKey="close" />
+      list = <ul>
+        <li onClick={this.toggleDayState}>1D</li>
+        <li onClick={this.toggleWeekState}>1W</li>
+        <li onClick={this.toggleMonthState}>1M</li>
+        <li onClick={this.toggleThreeMonthState}>3M</li>
+        <li className="selected" onClick={this.toggleYearState}>1Y</li>
+        <li>ALL</li>
+      </ul>
+    }
+
+
     return (
       <div className="stock-show">
         <div className="main-info">
@@ -32,17 +174,19 @@ class StockShow extends React.Component {
         <div className="main-charts" className="stock-charts">
           {/* <StockChart data={this.props.stock.one_day_chart} dataKey="average"/> */}
           {/* <br/> */}
-          <StockChart data={this.props.stock.one_month_chart} dataKey="close"/>
+          {/* <StockChart data={this.props.stock.one_month_chart} dataKey="close"/> */}
+          {stockChart}
           <br/>
           {/* <StockChart data={this.props.stock.one_year_chart} dataKey="close"/>  */}
-          <ul>
+          {/* <ul>
             <li>1D</li>
             <li>1W</li>
             <li>1M</li>
             <li>3M</li>
             <li>1Y</li>
             <li>ALL</li>
-          </ul>
+          </ul> */}
+          {list}
         </div>
         <div className="stock-about">
           <div className="about">
