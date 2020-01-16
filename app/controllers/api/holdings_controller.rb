@@ -4,7 +4,7 @@ class Api::HoldingsController < ApplicationController
   # before_action :require_logged_in
 
   def index 
-    client = Client.new 
+    client = Client.new
     @holdings = current_user.holdings;
     @holdings.each do |holding|
       holding.price = client.get_price(holding.ticker)
@@ -53,7 +53,6 @@ class Api::HoldingsController < ApplicationController
     client = Client.new
 
     @holding = current_user.holdings.find_by(ticker: params[:id]);
-    debugger; 
     @holding.price = client.get_price(@holding.ticker)
     @holding.change_percent_s = client.get_quote(@holding.ticker).change_percent_s
     @holding.one_day_chart = client.get_one_day_chart(@holding.ticker)
