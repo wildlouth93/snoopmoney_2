@@ -43,7 +43,7 @@ class Main extends React.Component {
   // }
 
   render() {
-    console.log(this.state.stockNews);
+    // console.log(this.state.stockNews);
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
 
     if (!currentUser) {

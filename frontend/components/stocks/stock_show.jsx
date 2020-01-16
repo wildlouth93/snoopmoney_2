@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StockChart from './stock_chart';
 import NewsItem from '../main/news_item';
-import BuySellForm from './buy_form';
+import BuyForm from './buy_form';
+import SellForm from './sell_form';
 
 
 class StockShow extends React.Component {
@@ -12,20 +13,29 @@ class StockShow extends React.Component {
       loading: true, 
       oneDay: false,
       oneWeek: false, 
-      oneMonth: true,
+      oneMonth: false,
       threeMonth: false, 
-      oneYear: false
+      oneYear: true, 
+      all: false
     };
     this.toggleDayState = this.toggleDayState.bind(this);
     this.toggleWeekState = this.toggleWeekState.bind(this);
     this.toggleMonthState = this.toggleMonthState.bind(this);
     this.toggleThreeMonthState = this.toggleThreeMonthState.bind(this);
     this.toggleYearState = this.toggleYearState.bind(this);
+    this.toggleAllState = this.toggleAllState.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchStock(this.props.match.params.symbol)
       .then(() => this.setState({loading: false}));
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.symbol !== this.props.match.params.symbol) {
+      this.props.fetchStock(this.props.match.params.symbol)
+        .then(() => this.setState({ loading: false }));
+    }
   }
 
   toggleDayState() {
@@ -35,7 +45,8 @@ class StockShow extends React.Component {
         oneWeek: false, 
         oneMonth: false, 
         threeMonth: false,
-        oneYear: false
+        oneYear: false, 
+        all: false
       })
     }
   }
@@ -47,7 +58,8 @@ class StockShow extends React.Component {
         oneWeek: true,
         oneMonth: false,
         threeMonth: false,
-        oneYear: false
+        oneYear: false, 
+        all: false
       })
     }
   }
@@ -59,7 +71,8 @@ class StockShow extends React.Component {
         oneWeek: false,
         oneMonth: true,
         threeMonth: false,
-        oneYear: false
+        oneYear: false, 
+        all: false
       })
     }
   }
@@ -71,7 +84,8 @@ class StockShow extends React.Component {
         oneWeek: false,
         oneMonth: false,
         threeMonth: true,
-        oneYear: false
+        oneYear: false, 
+        all: false
       })
     }
   }
@@ -83,7 +97,21 @@ class StockShow extends React.Component {
         oneWeek: false,
         oneMonth: false,
         threeMonth: false,
-        oneYear: true
+        oneYear: true, 
+        all: false
+      })
+    }
+  }
+
+  toggleAllState() {
+    if (this.state.all === false) {
+      this.setState({
+        oneDay: false,
+        oneWeek: false,
+        oneMonth: false,
+        threeMonth: false,
+        oneYear: false,
+        all: true
       })
     }
   }
@@ -94,12 +122,12 @@ class StockShow extends React.Component {
     let employees = parseInt(this.props.stock.employees).toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let marketCap = parseInt(this.props.stock.market_cap).toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     // let divYield = parseInt(this.props.stock.dividend_yield * 100)).toFixed(2);
-    if (this.state.loading) {
+    if (this.state.loading || Object.values(this.props.stock).length === 0) {
       return <div className="loader-container"><div className="loader"></div></div>
     }
 
-    let threeMonth = this.props.stock.one_year_chart.slice(200);
-    let oneWeek = this.props.stock.company_chart.slice(this.props.stock.company_chart.length - 5);
+    let threeMonth = this.props.stock.one_year_chart.slice(200) || null;
+    let oneWeek = this.props.stock.company_chart.slice(this.props.stock.company_chart.length - 5) || null;
 
     let stockChart;
     let list; 
@@ -112,7 +140,7 @@ class StockShow extends React.Component {
         <li onClick={this.toggleMonthState}>1M</li>
         <li onClick={this.toggleThreeMonthState}>3M</li>
         <li onClick={this.toggleYearState}>1Y</li>
-        <li>ALL</li>
+        <li onClick={this.toggleAllState}>ALL</li>
       </ul>
     }
 
@@ -124,7 +152,7 @@ class StockShow extends React.Component {
         <li onClick={this.toggleMonthState}>1M</li>
         <li onClick={this.toggleThreeMonthState}>3M</li>
         <li onClick={this.toggleYearState}>1Y</li>
-        <li>ALL</li>
+        <li onClick={this.toggleAllState}>ALL</li>
       </ul>
     }
 
@@ -136,7 +164,7 @@ class StockShow extends React.Component {
         <li className="selected" onClick={this.toggleMonthState}>1M</li>
         <li onClick={this.toggleThreeMonthState}>3M</li>
         <li onClick={this.toggleYearState}>1Y</li>
-        <li>ALL</li>
+        <li onClick={this.toggleAllState}>ALL</li>
       </ul>
     }
 
@@ -148,7 +176,7 @@ class StockShow extends React.Component {
         <li onClick={this.toggleMonthState}>1M</li>
         <li className="selected" onClick={this.toggleThreeMonthState}>3M</li>
         <li onClick={this.toggleYearState}>1Y</li>
-        <li>ALL</li>
+        <li onClick={this.toggleAllState}>ALL</li>
       </ul>
     }
 
@@ -160,11 +188,23 @@ class StockShow extends React.Component {
         <li onClick={this.toggleMonthState}>1M</li>
         <li onClick={this.toggleThreeMonthState}>3M</li>
         <li className="selected" onClick={this.toggleYearState}>1Y</li>
-        <li>ALL</li>
+        <li onClick={this.toggleAllState}>ALL</li>
       </ul>
     }
 
+    if (this.state.all) {
+      stockChart = <StockChart data={this.props.stock.one_year_chart} dataKey="close" />
+      list = <ul>
+        <li onClick={this.toggleDayState}>1D</li>
+        <li onClick={this.toggleWeekState}>1W</li>
+        <li onClick={this.toggleMonthState}>1M</li>
+        <li onClick={this.toggleThreeMonthState}>3M</li>
+        <li onClick={this.toggleYearState}>1Y</li>
+        <li className="selected" onClick={this.toggleAllState}>ALL</li>
+      </ul>
+    }
 
+    console.log(this.props.holdings);
     return (
       <div className="stock-show">
         <div className="main-info">
@@ -265,10 +305,11 @@ class StockShow extends React.Component {
         </div> */}
         <div className="stock-interaction">
           {
-            // <div>
-            //   {/* <BuyForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} /> */}
-            //   {/* <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/> */}
-            // </div>
+            <div>
+              {/* <BuyForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} />
+              <SellForm stock={this.props.stock} holdings={this.props.holdings} createHolding={this.props.createHolding} deleteHolding={this.props.deleteHolding} currentUser={currentUser} /> */}
+             {/* <WatchListButton stock={this.props.stock} watchlistitems={this.props.watchlistitems} createWatchListItem={this.props.createWatchListItem} deleteWatchListItem={this.props.deleteWatchListItem}/> */}
+            </div>
           }
         </div>
       </div>
