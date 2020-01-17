@@ -26,7 +26,7 @@ class Main extends React.Component {
     if (this.props.currentUser) {
       this.props.requestHoldings()
         .then(() => {
-          let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+          let networth = parseInt(this.props.currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
           this.setState({networth: networth})
         });
       this.props.requestWatchListItems()
