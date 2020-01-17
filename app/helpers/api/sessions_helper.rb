@@ -4,7 +4,7 @@ module Api::SessionsHelper
 
       def initialize(ticker = nil)
         @client = IEX::Api::Client.new(
-          publishable_token: 'Tpk_8945ca6a137b40068a66f5257e5ac120',
+          publishable_token: 'pk_0ec5c4b7123c4160b8cacc37858ac5af',
           endpoint: 'https://sandbox.iexapis.com/v1'
         )
 
