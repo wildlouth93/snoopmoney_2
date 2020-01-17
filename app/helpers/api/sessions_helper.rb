@@ -4,9 +4,11 @@ module Api::SessionsHelper
 
       def initialize(ticker = nil)
         @client = IEX::Api::Client.new(
-          publishable_token: 'pk_0ec5c4b7123c4160b8cacc37858ac5af',
+          publishable_token: 'Tpk_9b5ce5b8c40f4afb8d3dc8839a96d57e',
           endpoint: 'https://sandbox.iexapis.com/v1'
         )
+        # https://cloud.iexapis.com
+        # 'https://sandbox.iexapis.com/v1'
 
         puts "API inialized"
         # @quote = @client.quote(ticker)
