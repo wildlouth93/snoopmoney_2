@@ -16,7 +16,8 @@ class Main extends React.Component {
 
     this.state = {
       stockNews: {},
-      networth: null
+      networth: null,
+      stockData: {}
     }
 
   // this.getNews = this.getNews.bind(this);
@@ -32,6 +33,7 @@ class Main extends React.Component {
       this.props.requestWatchListItems()
         .then(() => {
           this.getNews();
+          this.getStocks();
         })
     }
   }
@@ -55,8 +57,17 @@ class Main extends React.Component {
       })
   }
 
+  getStocks() {
+    fetch('https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,amzn&types=quote,news,chart,stats&range=1y&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9')
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState( {stockData: result });
+      })
+  }
+
   render() {
     console.log(this.state.stockNews);
+    console.log(this.state.stockData);
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
     console.log(watchlistitems);
 
