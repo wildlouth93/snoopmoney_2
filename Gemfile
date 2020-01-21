@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.13'
 
 gem 'iex-ruby-client'
 
+gem 'httparty'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -3,5 +3,6 @@ class Holding < ApplicationRecord
   validates :num_shares, :cost_basis, presence: true 
   belongs_to :user 
   
-  attr_accessor :price, :change_percent_s, :one_day_chart
+  attr_accessor :price
+  # , :change_percent_s, :one_day_chart
 end

@@ -8,6 +8,13 @@ import {
 export default class StockChart extends PureComponent {
 
   render() {
+    let stroke = '#21ce99';
+    // if (this.props.data[0] < this.props.data[this.props.data.length-1]) {
+    //   stroke = 'red';
+    // } 
+    // console.log(this.props.data);
+    // console.log(this.props);
+
     return (
       <LineChart
         width={500}
@@ -18,12 +25,14 @@ export default class StockChart extends PureComponent {
         }}
       >
 
-        <XAxis dataKey="time" hide={true} />
-        <YAxis domain={['dataMin', 'dataMax']} hide={true} />
+        <XAxis dataKey="label" hide={true} />
+        {/* <YAxis type="number" domain={['dataMin', 'dataMax']} hide={true} /> */}
+        <YAxis type="number" domain={[dataMin => (dataMin * 0.999), dataMax => (dataMax * 1.001)]} hide={true} />
         <Tooltip />
         {/* <Legend /> */}
-        <Line type="monotone" dataKey={this.props.dataKey} stroke="#21ce99" dot={false} strokeWidth={2} />
+        <Line name="Portfolio Value" type="monotone" dataKey={this.props.dataKey} stroke={this.props.stroke} dot={false} strokeWidth={2} />
       </LineChart>
     );
   }
 };
+

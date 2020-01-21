@@ -8,6 +8,7 @@ import NewsItem from './news_item';
 import MainChart from './main_chart';
 import StockChart from '../stocks/stock_chart';
 import MiniChart2 from '../stocks/mini_chart';
+import MainChartDiv from './main_chart_div';
 
 
 class Main extends React.Component {
@@ -15,12 +16,27 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       stockNews: {},
       networth: null,
-      stockData: {}
+      stockData: {},
+      watchlistData: {},
+      timePeriod: '1d'
     }
+    
+    this.toggleTimeState = this.toggleTimeState.bind(this);
 
   // this.getNews = this.getNews.bind(this);
+
+  }
+
+  toggleTimeState() {
+    if (this.state.timePeriod === '1d') {
+      this.setState({timePeriod: '5d'})
+    }
+    if (this.state.timePeriod === '5d') {
+      this.setState({timePeriod: '1d'})
+    }
   }
 
   componentDidMount() {
@@ -28,74 +44,201 @@ class Main extends React.Component {
       this.props.requestHoldings()
         .then(() => {
           let networth = parseInt(this.props.currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+          this.getStocks();
           this.setState({networth: networth})
         });
       this.props.requestWatchListItems()
         .then(() => {
-          this.getNews();
-          this.getStocks();
-        })
+          this.getWatchlistItems();
+        });
     }
   }
 
-  getNews() {
-    let stockSymbols = '';
-    this.props.watchlistitems.map((watchlistitem, i) => (
-      stockSymbols += watchlistitem.ticker
-    ));
-    console.log(this.props.watchlistitems);
-    console.log(stockSymbols);
+  // getNews() {
+  //   let stockSymbols = [];
+  //   this.props.watchlistitems.map((watchlistitem, i) => (
+  //     stockSymbols.push(watchlistitem.ticker.toLowerCase())
+  //   ));
+  //   stockSymbols = stockSymbols.join(',');
+  //   console.log(stockSymbols);
+  //   // console.log(this.props.watchlistitems);
+  //   // console.log(stockSymbols);
     
-    let stockSymbol = 'AAPL'
-    let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
-    // let data; 
+  //   let stockSymbol = 'AAPL'
+  //   let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
+  //   // let data; 
 
-    fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbol}&accessKey=${API_Key}`)
-      .then((result) => result.json())
-      .then((result) => {
-        this.setState({ stockNews: result.result_data });
-      })
-  }
+  //   fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbols}&accessKey=${API_Key}`)
+  //     .then((result) => result.json())
+  //     .then((result) => {
+  //       this.setState({ stockNews: result.result_data, loading: false });
+  //     })
+  // }
+
+  
 
   getStocks() {
-    fetch('https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,amzn&types=quote,news,chart,stats&range=1y&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9')
+    let symbols = [];
+    this.props.holdings.map((holding, i) => {
+      symbols.push(holding.ticker.toLowerCase())
+    })
+    symbols = symbols.join(',');
+
+    fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbols}&types=quote,news,chart,stats&range=1d&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
       .then((result) => result.json())
       .then((result) => {
-        this.setState( {stockData: result });
+        this.setState( { stockData: result, loading: false });
       })
   }
 
+  getWatchlistItems() {
+    let symbols = [];
+    this.props.watchlistitems.map((watchlistitem, i) => {
+      symbols.push(watchlistitem.ticker.toLowerCase())
+    })
+    symbols = symbols.join(',');
+
+    fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbols}&types=quote,news,chart,stats&range=1d&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState({ watchlistData: result, loading: false });
+      })
+
+  }
+
+  // `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${symbols}&types=quote,news,chart,stats&range=1d&last=5&token=Tpk_8945ca6a137b40068a66f5257e5ac120`
+
+  // Tpk_8945ca6a137b40068a66f5257e5ac120
   render() {
-    console.log(this.state.stockNews);
-    console.log(this.state.stockData);
+    // console.log(this.state.stockNews);
+    // console.log(Object.values(this.state.stockData));
+    // console.log(this.state.stockData);
+    let newsItemsArr = [];
+    Object.values(this.state.stockData).forEach((stock, i) => {
+      // newsItemsArr.push(stock.news[i])
+      stock.news.forEach((newsItem, i) => {
+        newsItemsArr.push(newsItem);
+      })
+    })
+    console.log(newsItemsArr);
+    window.stockData = this.state.stockData;
+    
     const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
-    console.log(watchlistitems);
+    // console.log(watchlistitems);
+    // console.log(this.state);
 
     if (!currentUser) {
       return <MainOut />
     }
 
-    if (!this.state.networth)  {
+    if (holdings.length === 0) return null;
+    if (watchlistitems.length === 0) return null; 
+
+    if (this.state.loading || !this.state.networth)  {
       return <div className="loader-container"><div className="loader"></div></div>
     }
 
-    if (holdings.length === 0) return null; 
-    if (watchlistitems.length === 0) return null; 
     // let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    let data2 = Array.apply(null, Array(39)).map(function () { return { average: 0 } }); 
+    let data2 = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
+    // let miniData = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
+    // console.log('WatchList Data');
+    // console.log(this.state.watchlistData);
 
-    holdings.forEach(holding => {
-      holding.one_day_chart.forEach((datapoint, idx) => {
-        data2[idx].average += (datapoint.average * holding.num_shares)
+    Object.values(this.state.watchlistData).map((stock, i) => {
+      watchlistitems[i].price = stock.quote.latestPrice.toFixed(2);
+      watchlistitems[i].oneDayChange = (stock.quote.changePercent * 100).toFixed(2);
+      watchlistitems[i].oneDayChart = Array.apply(null, Array(39)).map(function () { return { average: 0 } });
+
+      if (watchlistitems[i].oneDayChange < 0) {
+        watchlistitems[i].stroke = 'red';
+      } else {
+        watchlistitems[i].stroke = '#21ce99'
+      }
+
+      stock.chart.map((datapoint,idx) => {
+        if (idx % 10 === 0) {
+          watchlistitems[i].oneDayChart[idx/10].average = datapoint.average;
+        }
       })
-    });
+    })
 
-    const fakeNewsItem = {};
-    fakeNewsItem.url = "google.com";
-    fakeNewsItem.source = "Reuters";
-    fakeNewsItem.headline = "Apple, Intel file antitrust case vs SoftBank-owned firm over patent practices";
-    fakeNewsItem.summary = "SAN FRANCISCO(Reuters) - Apple Inc(AAPL.O) and Intel Corp(INTC.O) on Wednesday filed an antitrust lawsuit against Fortress Investment Group, alleging the SoftBank Group Corp(9984.T) unit stockpiled patents to hold up tech firms with lawsuits demanding as much as $5.1 billion.";
+    Object.values(this.state.stockData).map((stock, i) => {
+      // console.log(stock);
+      // holdings[i].oneDayChart = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
+      // console.log(stock);
+      holdings[i].price = stock.quote.latestPrice.toFixed(2);
+        holdings[i].oneDayChange = (stock.quote.changePercent * 100).toFixed(2);
+      holdings[i].oneDayChart = Array.apply(null, Array(39)).map(function () { return { average: 0 } });
 
+      if (holdings[i].oneDayChange < 0) {
+        holdings[i].stroke = 'red';
+      } else {
+        holdings[i].stroke = '#21ce99';
+      }
+
+        stock.chart.map((datapoint, idx) => {
+        // data2[idx].average += (datapoint.average * holdings[stock.ticker].num_shares)
+        if (idx % 5 === 0) {
+          data2[idx/5].label = datapoint.label;
+          data2[idx/5].average += ((datapoint.average) * holdings[i].num_shares)
+        }  
+        // holdings[i].oneDayChart[idx] = data.point.average;
+        // data2[idx].label = datapoint.label;
+        // data2[idx].average += ((datapoint.average) * holdings[i].num_shares)
+        if (idx % 10 === 0) {
+          holdings[i].oneDayChart[idx/10].average = datapoint.average;
+        }
+      })
+    })
+
+    // console.log(holdings);
+
+    let data3 = [];
+    let sum = 0;
+    let sumsq = 0
+    data2.map((datapoint, idx) => {
+      // console.log(typeof datapoint.average);
+      // console.log(typeof currentUser.account_balance);
+      datapoint.average = datapoint.average + parseInt(currentUser.account_balance);
+     
+      sum += datapoint.average;
+      sumsq += (datapoint.average * datapoint.average)
+
+      let mean = sum / (idx + 1);
+      let variance = sumsq / (idx+1) - (mean * mean);
+      let sd = Math.sqrt(variance);
+
+      // console.log(mean);
+
+      if (datapoint.average > mean - (1 * sd) && datapoint.average < mean + (1 *sd)) {
+        datapoint.average = parseInt(datapoint.average).toFixed(2);
+        datapoint.label = datapoint.label
+        data3.push(datapoint)
+      }
+    })
+
+    let mainChart;
+    let listItems;
+
+    if (this.state.timePeriod === '1y' || this.state.timePeriod === 'all') {
+      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1y' />
+    }
+
+    if (this.state.timePeriod === '1d') {
+      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1d' />
+    }
+
+    if (this.state.timePeriod === '1m') {
+      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1m' />
+    }
+
+    if (this.state.timePeriod === '5d') {
+      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='5d' />
+    }
+
+
+    console.log(holdings);
+    
     const main = currentUser ? (
       <div>
         <div className="main-info">
@@ -106,16 +249,19 @@ class Main extends React.Component {
        <div className="side-bar-charts">
           <div className="main-charts">
             {/* <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/> */}
-            { <StockChart data={data2} dataKey="average" className="main-chart"/> }
-            
+            { <StockChart data={data3} dataKey="average" className="main-chart"/> }
             <ul>
-              <li>1D</li>
-              <li>1W</li>
+              <li className="selected">1D</li>
+              <li>5D</li>
               <li>1M</li>
               <li>3M</li>
               <li>1Y</li>
               <li>ALL</li>
             </ul>
+            {/* {listItems} */}
+          </div>
+          <div>
+            {mainChart}
           </div>
           <div className="main-side-bar">
             <div className="side-bar-head">
@@ -154,29 +300,22 @@ class Main extends React.Component {
           </div>
         </div>
         <br />
-        {/* <div className="main-news">
-          <h3>News</h3>
+        <div className="main-news">
+          <h3>News</h3> 
           {
-            watchlistitems.map((watchlistitem, i) => (
-              watchlistitem.news.map((newsItem,j) => (
+              newsItemsArr.map((newsItem,i) => (
                 <div>
-                  <NewsItem 
-                    newsItem={fakeNewsItem}
-                    key={(i*j)}
-                    watchlistitem={watchlistitem}
-                  />
                   <NewsItem
                     newsItem={newsItem}
                     key={newsItem.datetime}
-                    watchlistitem={watchlistitem}
+                    watchlistitem={newsItem}
                     className="news-item"
                   />
                 </div>
               ))
-            ))
           }
-        </div> */}
-      <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
+        </div>
+        <p className="reference">Stock information received from external API, <a href="https://iexcloud.io">IEX Cloud Console. </a></p>
       </div>
     ) : (
         <div>

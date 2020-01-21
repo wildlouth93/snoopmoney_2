@@ -67,12 +67,23 @@ class User < ApplicationRecord
 
   def net_worth
     client = Client.new
+    symbol_string = [];
     total = self.account_balance
-    self.holdings.each do |holding| 
-      share_price = client.get_price(holding.ticker)
+
+    holdings2 = self.holdings;
+ 
+    holdings2.each do |holding| 
+      symbol_string << holding.ticker.downcase
+    end
+
+    symbol_string = symbol_string.join(',');
+    stock_prices = client.fetchPrices(symbol_string);
+
+    holdings2.each do |holding|
+      share_price = stock_prices[holding.ticker]["price"]
       total += (share_price * holding.num_shares)
     end
-    puts "Net worth calculated"
+    
     total 
   end
 

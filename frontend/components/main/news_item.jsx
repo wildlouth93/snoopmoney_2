@@ -11,12 +11,13 @@ const NewsItem = ({ newsItem, watchlistitem }) => (
         {/* <li>{newsItem.datetime}</li> */}
         <h4>{newsItem.headline}</h4>
         <p>{newsItem.summary}</p>
-        <h6>{watchlistitem.ticker} {watchlistitem.change_percent_s}</h6>
+        {/* <h6>{watchlistitem.ticker} {watchlistitem.change_percent_s}</h6> */}
         </div>
 
         {/* <li><p>Related: {newsItem.related}</p></li> */}
         <div className="news-image">
-        <img src={window.images.stock_news_image}/>
+        {/* <img src={window.images.stock_news_image}/> */}
+        <img src={newsItem.image} />
         </div>
       
       </div>

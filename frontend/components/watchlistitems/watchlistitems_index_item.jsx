@@ -6,9 +6,9 @@ const WatchListItemsIndexItem = ({ watchlistitem, deleteWatchListItem}) => (
   <li className="side-bar-el">
     <ul>
       <li className="wl-ticker-li"><Link className="wl-ticker-link" to={`/stocks/${watchlistitem.ticker}`}>{watchlistitem.ticker}</Link></li>
-      <li><MiniChart data={watchlistitem.one_day_chart}/></li> 
+      <li><MiniChart data={watchlistitem.oneDayChart} stroke={watchlistitem.stroke} /></li> 
       <li><p>{watchlistitem.price}</p>
-        <p>{watchlistitem.change_percent_s}</p>
+        <p style={{ color: watchlistitem.stroke }}>{watchlistitem.oneDayChange}%</p>
       </li>      
     </ul>
   </li>

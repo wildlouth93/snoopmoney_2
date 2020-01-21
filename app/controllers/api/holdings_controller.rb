@@ -4,13 +4,12 @@ class Api::HoldingsController < ApplicationController
   # before_action :require_logged_in
 
   def index 
-    client = Client.new
+    client = Client.new 
     @holdings = current_user.holdings;
-    @holdings.each do |holding|
-      holding.price = client.get_price(holding.ticker)
-      holding.change_percent_s = client.get_quote(holding.ticker).change_percent_s
-      holding.one_day_chart = client.get_one_day_chart(holding.ticker)
-    end
+    # @holdings.each do |holding|
+    #   holding.price = client.get_price(holding.ticker)
+    # end
+
     render :index 
   end
 
@@ -25,8 +24,6 @@ class Api::HoldingsController < ApplicationController
   
     if @holding.save 
       @holding.price = client.get_price(@holding.ticker)
-      @holding.change_percent_s = client.get_quote(@holding.ticker).change_percent_s
-      @holding.one_day_chart = client.get_one_day_chart(@holding.ticker)
       current_user.buy_stock(@holding.ticker) 
       render :show
       # redirect_to controller: 'stocks', action: 'show', holding_id: @holding.id
@@ -53,9 +50,6 @@ class Api::HoldingsController < ApplicationController
     client = Client.new
 
     @holding = current_user.holdings.find_by(ticker: params[:id]);
-    @holding.price = client.get_price(@holding.ticker)
-    @holding.change_percent_s = client.get_quote(@holding.ticker).change_percent_s
-    @holding.one_day_chart = client.get_one_day_chart(@holding.ticker)
     render :show 
   end
 

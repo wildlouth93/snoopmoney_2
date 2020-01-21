@@ -8,10 +8,10 @@ const HoldingIndexItem = ({ holding, deleteHolding, updateHolding }) => (
       <li><Link to={`/stocks/${holding.ticker}`}>{holding.ticker}</Link>
         <p>{holding.num_shares} Shares</p>
       </li>
-      <li><MiniChart data={holding.one_day_chart} /></li>
+      <li><MiniChart data={holding.oneDayChart} stroke={holding.stroke} /></li>
       {/* <li><p>${holding.cost_basis}</p></li> */}
       <li><p>${holding.price}</p>
-        <p>{holding.change_percent_s}</p>
+        <p style={{ color: holding.stroke}}>{holding.oneDayChange}%</p>
       </li>
       {/* <li><p>${holding.price * holding.num_shares}</p></li> */}
      

@@ -1,27 +1,48 @@
 module Api::SessionsHelper
     class Client 
+      include HTTParty
+      
       attr_reader :client 
 
       def initialize(ticker = nil)
         @client = IEX::Api::Client.new(
-          publishable_token: 'Tpk_9b5ce5b8c40f4afb8d3dc8839a96d57e',
-          endpoint: 'https://sandbox.iexapis.com/v1'
+          publishable_token: 'pk_c0d9b6069cf349fbb1fc607a8f129ff9',
+          endpoint: 'https://cloud.iexapis.com/v1/'
         )
+
+        # @client2 = IEX::Api::Client.new(
+        #   publishable_token: 'pk_c0d9b6069cf349fbb1fc607a8f129ff9',
+        #   endpoint: 'https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=price'
+        # )
+
         # https://cloud.iexapis.com
-        # 'https://sandbox.iexapis.com/v1'
+        # 'pk_c0d9b6069cf349fbb1fc607a8f129ff9'
+
+        # Tsk_3578bacb68084209a84895ac7995e209
+       
 
         puts "API inialized"
-        # @quote = @client.quote(ticker)
-        # @price = @client.quote(ticker).iex_realtime_price;
-        if (ticker != nil)
-          @company_info = @client.company(ticker);
-          @key_stats = @client.key_stats(ticker);
-          @company_chart = @client.chart(ticker);
-          @one_month_chart = @client.chart(ticker, '1m', chart_close_only: true);
-          @one_year_chart = @client.chart(ticker, '1y', chart_close_only: true);
-          # @earnings = @client.earnings(ticker);
-        end
+      
+        # if (ticker != nil)
+        #   @company_info = @client.company(ticker);
+        #   @key_stats = @client.key_stats(ticker);
+        #   @company_chart = @client.chart(ticker);
+        #   @one_month_chart = @client.chart(ticker, '1m', chart_close_only: true);
+        #   @one_year_chart = @client.chart(ticker, '1y', chart_close_only: true);
+        # end
 
+      end
+
+      # def fetchPrices()
+      #   url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=price&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9"
+      #   response = HTTParty.get(url)
+      #   JSON.parse(response.body)
+      # end
+
+       def fetchPrices(symbol_string)
+        url = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=#{symbol_string}&types=price&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9"
+        response = HTTParty.get(url)
+        JSON.parse(response.body)
       end
 
       def get_price(ticker)
@@ -34,51 +55,30 @@ module Api::SessionsHelper
         @client.quote(ticker)
       end
 
-      def get_company_info()
-        @company_info
-      end
-
-      # def get_company_logo(ticker)
-      #   @client.logo(ticker)
+      # def get_company_info()
+      #   @company_info
       # end
 
-      # def get_company_news(ticker, num)
-      #   @client.news('MSFT', num)
+      # def get_company_chart()
+      #   @company_chart
       # end
 
-      def get_company_chart()
-        @company_chart
-      end
-
-      def get_company_key_stats()
-        @key_stats
-      end
-
-      def get_one_day_chart(ticker)
-        puts "API chart call"
-        @client.chart(ticker, '1d', chart_interval: 10);
-      end
-
-      def get_one_month_chart()
-        @one_month_chart
-      end
-
-      def get_one_year_chart()
-        @one_year_chart
-      end
-
-      # Options are: 5y, 2y, 1y, ytd, 6m, 3m, 1m
-
-      # def get_company_dividends(ticker, period)
-      #   @client.dividends(ticker, period)
+      # def get_company_key_stats()
+      #   @key_stats
       # end
 
-      # def get_company_earnings()
-      #   @client.earnings
+      # def get_one_day_chart(ticker)
+      #   puts "API chart call"
+      #   @client.chart(ticker, '1d', chart_interval: 10);
       # end
 
-      # def get_company_income_statement(ticker)
-      #   @client.income(ticker)
+      # def get_one_month_chart()
+      #   @one_month_chart
       # end
+
+      # def get_one_year_chart()
+      #   @one_year_chart
+      # end
+
   end
 end
