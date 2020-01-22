@@ -12,11 +12,11 @@ export const fetchWatchListItem = ticker => {
   })
 }
 
-export const createWatchListItem = watchlistitem => {
+export const createWatchListItem = watch_list_item => {
   return $.ajax({
     url: `api/watch_list_items`,
     method: 'POST',
-    data: { watchlistitem }
+    data: { watch_list_item }
   })
 };
 

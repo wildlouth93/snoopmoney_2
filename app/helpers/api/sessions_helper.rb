@@ -47,7 +47,7 @@ module Api::SessionsHelper
 
       def get_price(ticker)
         puts "API price call"
-        @client.quote(ticker).iex_realtime_price
+        @client.quote(ticker).latest_price
       end
 
       def get_quote(ticker)

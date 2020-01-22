@@ -19,7 +19,7 @@ const watchListItemsReducer = (state = {}, action) => {
       return Object.assign({}, state, { [action.watchlistitem.ticker]: action.watchlistitem });
     case REMOVE_WATCHLIST_ITEM:
       let newState = Object.assign({}, state);
-      delete newState[watchlistitem.ticker];
+      delete newState[action.ticker];
       return newState;
     default:
       return state;

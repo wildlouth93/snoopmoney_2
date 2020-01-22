@@ -12,7 +12,7 @@ export default class MiniChart extends PureComponent {
     // } 
     // console.log(this.props.data)
     return (
-      <LineChart width={50} height={50} data={this.props.data}>
+      <LineChart width={40} height={40} data={this.props.data}>
         {/* <YAxis type="number" domain={['dataMin', 'dataMax']} hide={true} /> */}
         <YAxis type="number" domain={[dataMin => (dataMin * 0.99), dataMax => (dataMax * 1.01)]} hide={true} />
         <Line type="monotone" dataKey="average" stroke={this.props.stroke} strokeWidth={2}  dot={false} />

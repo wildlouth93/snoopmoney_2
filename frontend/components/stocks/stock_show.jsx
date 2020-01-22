@@ -34,6 +34,8 @@ class StockShow extends React.Component {
     // this.toggleAllState = this.toggleAllState.bind(this);
     this.handleBuySubmit = this.handleBuySubmit.bind(this);
     this.handleSellSubmit = this.handleSellSubmit.bind(this);
+    this.handleAddWLI = this.handleAddWLI.bind(this);
+    this.handleRemoveWLI = this.handleRemoveWLI.bind(this);
   }
 
   componentDidMount() {
@@ -219,14 +221,28 @@ class StockShow extends React.Component {
     this.props.deleteHolding(potentialHolding.ticker)
   }
 
+  handleAddWLI(e) {
+    e.preventDefault();
 
-  // demoLogin(e) {
-  //   e.preventDefault();
-  //   let demoUser = { email: 'u28@gmail.com', password: 'hunter2' };
-  //   this.props.login(demoUser)
-  //     .then(() => this.props.history.push('/'))
-  // }
+    // let info2 = e.currentTarget.form.elements;
+    let info1 = e.currentTarget.form.elements[0];
+    let potentialWLI = {
+        ticker: info1.value
+    }
+    console.log(potentialWLI);
+    // console.log(info2);
+    this.props.createWatchListItem(potentialWLI)
+  }
 
+  handleRemoveWLI(e) {
+    e.preventDefault();
+    let info1 = e.currentTarget.form.elements[0];
+    let potentialWLI = {
+      ticker: info1.value
+    }
+    console.log(potentialWLI)
+    this.props.deleteWatchListItem(potentialWLI.ticker)
+  }
 
   // toggleAllState() {
   //   if (this.state.all === false) {
@@ -484,16 +500,21 @@ class StockShow extends React.Component {
     })
 
     console.log(inHoldings);
-    console.log(stockHolding);
+    // console.log(stockHolding);
     console.log(inWatchList);
-    console.log(stockWLI);
+    // console.log(stockWLI);
 
     let holdingForm;
     let watchlistForm;
 
     if (!inHoldings) {
       holdingForm = <form>
-        <input 
+         <label>
+          Current Price:
+          <p> ${parseFloat(quote.latestPrice).toFixed(2)} </p>
+          </label>
+        {/* <h4>Current Price: ${parseFloat(quote.latestPrice).toFixed(2)}</h4> */}
+        <input    
           type="hidden" 
           value={stock.quote.latestPrice}
           placeholder={stock.quote.latestPrice}>
@@ -505,7 +526,7 @@ class StockShow extends React.Component {
           placeholder={this.props.match.params.symbol}
           >
         </input>
-        <label>Number of Shares
+        <label># of Shares
           <input
           type="number"
           value={this.state.number}
@@ -522,6 +543,17 @@ class StockShow extends React.Component {
       </form>
     } else {
       holdingForm = <form>
+        <label>
+          Current Price:
+              <p> ${parseFloat(quote.latestPrice).toFixed(2)} </p>
+        </label>
+        <label>
+          # of Shares: 
+            <p>{stockHolding.num_shares}</p>
+        </label>
+        {/* <h4>Current Price: ${parseFloat(quote.latestPrice).toFixed(2)}</h4>
+         <h4># of Shares: {stockHolding.num_shares}</h4> */}
+
         <input
           type="hidden"
           value={stockHolding.cost_basis}
@@ -533,7 +565,6 @@ class StockShow extends React.Component {
           value={stockHolding.ticker}
         >
         </input>
-        <label>
           <input
             type="hidden"
             value={stockHolding.num_shares}
@@ -545,14 +576,33 @@ class StockShow extends React.Component {
             // value="0"
             placeholder="0">
           </input> */}
-        </label>
         <button onClick={this.handleSellSubmit}>Sell Stock</button>
       </form>
     }
 
+    if (!inWatchList) {
+      watchlistForm = <form>
+        <input
+          // type="hidden"
+          type="hidden"
+          value={this.props.match.params.symbol}
+        >
+        </input>
+        <button onClick={this.handleAddWLI}>Add to WatchList</button>
+      </form>
+    } else {
+      watchlistForm = <form>
+        <input 
+          type="hidden"
+          value={this.props.match.params.symbol}
+        ></input>
+        <button onClick={this.handleRemoveWLI}>Remove from WatchList</button>
+      </form>
+    }
+
     // window.holdings = this.props.holdings;
-    console.log(this.props.holdings);
-    console.log(this.props.watchlistitems);
+    // console.log(this.props.holdings);
+    // console.log(this.props.watchlistitems);
 
     return (
       <div className="stock-show">
@@ -654,6 +704,9 @@ class StockShow extends React.Component {
              {holdingForm}
             </div>
           }
+        </div>
+        <div className="stock-interaction-2">
+           {watchlistForm}
         </div>
       </div>
     )
