@@ -25,15 +25,22 @@ class MainChartDiv extends React.Component {
 
   toggleOneDay() {
     if (this.state.oneDay === false) {
-      this.setState({oneDay: true, fiveDay: false, oneMonth: false, oneYear: false})
+      this.setState(
+        {oneDay: true, fiveDay: false, oneMonth: false, oneYear: false, loading: true},
+        () => this.getStocks()
+        );
     }
+
     // this.getStocks()
     //   .then(() => this.forceUpdate())
   }
 
   toggleFiveDay() {
     if (this.state.fiveDay === false) {
-      this.setState({ oneDay: false, fiveDay: true, oneMonth: false, oneYear: false})
+      this.setState(
+        { oneDay: false, fiveDay: true, oneMonth: false, oneYear: false, loading: true},
+        () => this.getStocks()
+        );
     }
     // this.getStocks()
     //   .then(() => this.forceUpdate())
@@ -41,7 +48,10 @@ class MainChartDiv extends React.Component {
 
   toggleOneMonth() {
     if (this.state.oneMonth === false) {
-      this.setState({ oneDay: false, fiveDay: false, oneMonth: true, oneYear: false})
+      this.setState(
+        { oneDay: false, fiveDay: false, oneMonth: true, oneYear: false, loading: true},
+        () => this.getStocks()
+        );
     }
     // this.getStocks()
     //   .then(() => this.forceUpdate())    
@@ -49,7 +59,10 @@ class MainChartDiv extends React.Component {
 
   toggleOneYear() {
     if (this.state.oneYear === false) {
-      this.setState({ oneDay: false, fiveDay: false, oneMonth: false, oneYear: true})
+      this.setState(
+        { oneDay: false, fiveDay: false, oneMonth: false, oneYear: true, loading: true},
+        () => this.getStocks()
+        );
     }
     // this.getStocks()
     //   .then(() => this.forceUpdate())
@@ -68,20 +81,20 @@ class MainChartDiv extends React.Component {
   //   this._isMounted = false;
   // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.oneDay !== prevState.oneDay) {
-      this.getStocks()
-    }
-    if (this.state.fiveDay !== prevState.fiveDay) {
-      this.getStocks()
-    }
-    if (this.state.oneMonth !== prevState.oneMonth) {
-      this.getStocks()
-    }
-    if (this.state.oneYear !== prevState.oneYear) {
-      this.getStocks()
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.oneDay !== prevState.oneDay) {
+  //     this.getStocks()
+  //   }
+  //   if (this.state.fiveDay !== prevState.fiveDay) {
+  //     this.getStocks()
+  //   }
+  //   if (this.state.oneMonth !== prevState.oneMonth) {
+  //     this.getStocks()
+  //   }
+  //   if (this.state.oneYear !== prevState.oneYear) {
+  //     this.getStocks()
+  //   }
+  // }
 
   // componentDidUpdate() {
   //   this.getStocks();
@@ -125,7 +138,9 @@ class MainChartDiv extends React.Component {
     // console.log(this.props);
 
     if (this.state.loading) {
-      return <div className="loader-container"><div className="loader"></div></div>
+      return <div className="main-charts">
+        <div className="loader-container"><div className="loader"></div></div>
+      </div>
     }
 
     // console.log(this.state);
@@ -133,11 +148,13 @@ class MainChartDiv extends React.Component {
 
     const { holdings, currentUser } = this.props;
 
-    let data2; 
+
+    let data2 = Array.apply(null, Array(5)).map(function () { return { average: 0 } }); 
 
     if (this.state.oneDay) {
       data2 = Array.apply(null, Array(78)).map(function () { return { average: 0} }); 
     }
+
     // 78
     // 253
     // 22
@@ -151,9 +168,10 @@ class MainChartDiv extends React.Component {
       data2 = Array.apply(null, Array(22)).map(function () { return { average: 0} }); 
     }
 
-    if (this.state.fiveDay) {
-      data2 = Array.apply(null, Array(5)).map(function () { return { average: 0} }); 
-    }
+    // if (this.state.fiveDay) {
+    //   data2 = Array.apply(null, Array(5)).map(function () { return { average: 0} }); 
+    // }
+    
 
     // console.log('data2');
     // console.log(data2)
@@ -161,9 +179,10 @@ class MainChartDiv extends React.Component {
     // let data2 = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
 
     // debugger;
-    // console.log(Object.values(this.state.stockData2));
+    console.log(Object.values(this.state.stockData2));
 
     Object.values(this.state.stockData2).map((stock, i) => {
+
       // console.log(stock);
       stock.chart.map((datapoint, idx) => {
         // data2[idx].average += (datapoint.average * holdings[stock.ticker].num_shares)
@@ -180,6 +199,10 @@ class MainChartDiv extends React.Component {
           data2[idx].average += ((datapoint.close) * holdings[i].num_shares);
         }
         if (this.state.fiveDay) {
+          // debugger;
+          if (!data2[idx]) {
+            debugger;
+          }
           data2[idx].label = datapoint.label;
           data2[idx].average += ((datapoint.close) * holdings[i].num_shares);
         }
@@ -202,7 +225,7 @@ class MainChartDiv extends React.Component {
 
       let mean = sum / (idx + 1);
       let variance = sumsq / (idx+1) - (mean * mean);
-      let sd = Math.sqrt(variance );
+      let sd = Math.sqrt(variance);
 
       let sdValue = 3;
 
@@ -211,7 +234,7 @@ class MainChartDiv extends React.Component {
       } 
 
       if (this.state.fiveDay) {
-        sdValue = 10;
+        sdValue = 20;
       }
 
       // console.log(mean);
@@ -248,8 +271,8 @@ class MainChartDiv extends React.Component {
 
     if (this.state.fiveDay) {
       listItems = <ul>
-        <li onClick={this.toggleTimeState}>1D</li>
-        <li onClick={this.toggleTimeState} className="selected">5D</li>
+        <li onClick={this.toggleOneDay}>1D</li>
+        <li onClick={this.toggleFiveDay} className="selected">5D</li>
         <li onClick={this.toggleOneMonth}>1M</li>
         <li>3M</li>
         <li onClick={this.toggleOneYear}>1Y</li>
@@ -259,8 +282,8 @@ class MainChartDiv extends React.Component {
     
     if (this.state.oneMonth) {
       listItems = <ul>
-        <li onClick={this.toggleTimeState}>1D</li>
-        <li onClick={this.toggleTimeState}>5D</li>
+        <li onClick={this.toggleOneDay}>1D</li>
+        <li onClick={this.toggleFiveDay}>5D</li>
         <li onClick={this.toggleOneMonth} className="selected">1M</li>
         <li>3M</li>
         <li onClick={this.toggleOneYear}>1Y</li>
@@ -271,8 +294,8 @@ class MainChartDiv extends React.Component {
 
     if (this.state.oneYear) {
       listItems = <ul>
-        <li onClick={this.toggleTimeState}>1D</li>
-        <li onClick={this.toggleTimeState}>5D</li>
+        <li onClick={this.toggleOneDay}>1D</li>
+        <li onClick={this.toggleFiveDay}>5D</li>
         <li onClick={this.toggleOneMonth}>1M</li>
         <li>3M</li>
         <li onClick={this.toggleOneYear} className="selected">1Y</li>
@@ -285,7 +308,7 @@ class MainChartDiv extends React.Component {
       stroke = 'red'
     }
 
-    stockChart = <StockChart data={data4} dataKey="average" className="test-chart" stroke={stroke}/>
+    stockChart = <StockChart data={data4} dataKey="average" className="test-chart" stroke={stroke} name="Portfolio Value" />
 
     return (
     <div className="main-charts">

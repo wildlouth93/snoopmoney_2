@@ -4,8 +4,9 @@ import MiniChart from '../stocks/mini_chart';
 
 const HoldingIndexItem = ({ holding, deleteHolding, updateHolding }) => (
   <li className="side-bar-el">
+    <Link to={`/stocks/${holding.ticker}`}>
     <ul>
-      <li><Link to={`/stocks/${holding.ticker}`}>{holding.ticker}</Link>
+      <li className="dropdown-name">{holding.ticker}
         <p>{holding.num_shares} Shares</p>
       </li>
       <li><MiniChart data={holding.oneDayChart} stroke={holding.stroke} /></li>
@@ -16,6 +17,7 @@ const HoldingIndexItem = ({ holding, deleteHolding, updateHolding }) => (
       {/* <li><p>${holding.price * holding.num_shares}</p></li> */}
      
     </ul>
+    </Link>
   </li>
 )
 

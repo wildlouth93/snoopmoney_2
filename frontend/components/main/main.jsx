@@ -24,20 +24,20 @@ class Main extends React.Component {
       timePeriod: '1d'
     }
     
-    this.toggleTimeState = this.toggleTimeState.bind(this);
+    // this.toggleTimeState = this.toggleTimeState.bind(this);
 
   // this.getNews = this.getNews.bind(this);
 
   }
 
-  toggleTimeState() {
-    if (this.state.timePeriod === '1d') {
-      this.setState({timePeriod: '5d'})
-    }
-    if (this.state.timePeriod === '5d') {
-      this.setState({timePeriod: '1d'})
-    }
-  }
+  // toggleTimeState() {
+  //   if (this.state.timePeriod === '1d') {
+  //     this.setState({timePeriod: '5d'})
+  //   }
+  //   if (this.state.timePeriod === '5d') {
+  //     this.setState({timePeriod: '1d'})
+  //   }
+  // }
 
   componentDidMount() {
     if (this.props.currentUser) {
@@ -220,25 +220,28 @@ class Main extends React.Component {
     let mainChart;
     let listItems;
 
-    if (this.state.timePeriod === '1y' || this.state.timePeriod === 'all') {
-      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1y' />
-    }
 
-    if (this.state.timePeriod === '1d') {
-      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1d' />
-    }
 
-    if (this.state.timePeriod === '1m') {
-      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1m' />
-    }
+    // if (this.state.timePeriod === '1y' || this.state.timePeriod === 'all') {
+    //   mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1y' />
+    // }
 
-    if (this.state.timePeriod === '5d') {
-      mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='5d' />
-    }
+    // if (this.state.timePeriod === '1d') {
+    //   mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1d' />
+    // }
 
+    // if (this.state.timePeriod === '1m') {
+    //   mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='1m' />
+    // }
+
+    // if (this.state.timePeriod === '5d') {
+    //   mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} timePeriod='5d' />
+    // }
+
+    mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} />
 
     console.log(holdings);
-    
+
     const main = currentUser ? (
       <div>
         <div className="main-info">
@@ -247,20 +250,20 @@ class Main extends React.Component {
           <p>{(holdings[0].change_percent_s)}Today</p>
        </div>
        <div className="side-bar-charts">
-          <div className="main-charts">
+          {/* <div className="main-charts"> */}
             {/* <StockChart data={holdings[0].one_day_chart} dataKey="average" className="main-chart"/> */}
-            { <StockChart data={data3} dataKey="average" className="main-chart"/> }
-            <ul>
+            {/* { <StockChart data={data3} dataKey="average" className="main-chart"/> } */}
+            {/* <ul>
               <li className="selected">1D</li>
               <li>5D</li>
               <li>1M</li>
               <li>3M</li>
               <li>1Y</li>
               <li>ALL</li>
-            </ul>
+            </ul> */}
             {/* {listItems} */}
-          </div>
-          <div>
+          {/* </div> */}
+          <div> 
             {mainChart}
           </div>
           <div className="main-side-bar">

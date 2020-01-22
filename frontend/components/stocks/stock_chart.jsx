@@ -30,7 +30,7 @@ export default class StockChart extends PureComponent {
         <YAxis type="number" domain={[dataMin => (dataMin * 0.999), dataMax => (dataMax * 1.001)]} hide={true} />
         <Tooltip />
         {/* <Legend /> */}
-        <Line name="Portfolio Value" type="monotone" dataKey={this.props.dataKey} stroke={this.props.stroke} dot={false} strokeWidth={2} />
+        <Line name={this.props.name} type="monotone" dataKey={this.props.dataKey} stroke={this.props.stroke} dot={false} strokeWidth={2} />
       </LineChart>
     );
   }
