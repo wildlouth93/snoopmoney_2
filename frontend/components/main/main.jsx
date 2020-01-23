@@ -113,6 +113,8 @@ class Main extends React.Component {
     // console.log(this.state.stockNews);
     // console.log(Object.values(this.state.stockData));
     // console.log(this.state.stockData);
+
+    const { currentUser, logout, holdings, watchlistitems, stocks } = this.props;
   
     if (!currentUser) {
       return <MainOut />
@@ -121,8 +123,6 @@ class Main extends React.Component {
     if (this.state.loading || !this.state.networth) {
       return <div className="loader-container"><div className="loader"></div></div>
     }
-
-    const { currentUser, logout, holdings, watchlistitems, stocks } = this.props;
 
     if (holdings.length === 0) return null;
     if (watchlistitems.length === 0) return null;
