@@ -45,7 +45,7 @@ class Signup extends React.Component {
       <div className="sign-up-form">
         <div className="form-component">
           <h1>Make Your Money Move</h1>
-          <p>Robinhood lets you invest in companies you love, commission-free.</p>
+          <p>SnoopMoney lets you invest in companies you love, commission-free.</p>
           <form className="form-box">
                 <input 
                   placeholder="First Name"

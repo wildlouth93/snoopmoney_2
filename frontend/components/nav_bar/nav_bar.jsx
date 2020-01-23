@@ -37,10 +37,12 @@ export default ({ currentUser, logout, pathname, clearErrors}) => {
    ) : (
     <div className="out-nav-bar">
       <ul className="left-nav">
-        <li className="logo"><Link to="/" ><img src={window.images.logo_image_with_writing}/></Link></li>
-        <li>Products</li>
+        {/* <li className="logo"><Link to="/" ><img src={window.images.logo_image_with_writing}/></Link></li> */}
+        <li className="logo"><Link to="/" ><img src={window.images.nav_bar_logo_image} /></Link></li>
+        <li className="title"><Link to="/" ><h1>snoopMoney</h1></Link></li>
+        {/* <li>Products</li>
         <li>Learn</li>
-        <li>Support</li>
+        <li>Support</li> */}
       </ul>
       {sessionLinks}
     </div>

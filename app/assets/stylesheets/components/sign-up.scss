@@ -27,8 +27,13 @@
   align-content: center;
 }
 
-.sign-up-form .form-component h1, p {
+.sign-up-form .form-component h1 {
   text-align: center; 
+}
+
+.sign-up-form .form-component p {
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 .sign-up-form .form-component h1 {

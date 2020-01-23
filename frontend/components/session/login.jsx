@@ -54,7 +54,7 @@ class Login extends React.Component {
         </div>
         <div className="form-component">
           <form>
-            <h2>Welcome to Robinhood</h2>
+            <h2>Welcome to SnoopMoney</h2>
             <label>Email
               <br/>
               <input
