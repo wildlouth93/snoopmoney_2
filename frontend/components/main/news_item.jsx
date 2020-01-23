@@ -9,7 +9,7 @@ const NewsItem = ({ newsItem, watchlistitem }) => (
         <div className="news-content">
         <h5>{newsItem.source} 1d</h5>
         {/* <li>{newsItem.datetime}</li> */}
-        <h4>{newsItem.headline}</h4>
+        <h4 className="headline">{newsItem.headline}</h4>
         <p>{newsItem.summary}</p>
         {/* <h6>{watchlistitem.ticker} {watchlistitem.change_percent_s}</h6> */}
         </div>

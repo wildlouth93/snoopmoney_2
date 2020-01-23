@@ -215,11 +215,11 @@
 }
 
 .main-news .news-item .news-content h4 {
-  height: 50px; 
+  padding-bottom: 10px;
 }
 
 .main-news .news-item .news-content p {
-  height: 75px; 
+  height: 70px; 
   font-size: 12px; 
 }
 
@@ -340,3 +340,7 @@
 //     list-style: none;
 //     padding-top: 0;
 //     box-shadow: 1px 1px 22px -7px lightgrey;
+
+.headline {
+  height: 100%;
+}
