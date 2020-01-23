@@ -27,6 +27,7 @@ class Login extends React.Component {
   }
 
   renderErrors() {
+    console.log(this.props.errors);
     return (
       <ul className="errors-pop-up">
         {
@@ -36,7 +37,11 @@ class Login extends React.Component {
             </li>
           ))
         }
+
       </ul>
+      // <div>
+      //   <p>{this.props.errors[0]}</p>
+      // </div>
     )
   }
 

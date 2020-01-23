@@ -8,3 +8,6 @@ const configureStore = (preloadedState = {}) => (
 );
 
 export default configureStore; 
+
+// to take logger out in production, just take logger out of applyMiddleware function
+

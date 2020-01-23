@@ -12,10 +12,10 @@ class StockShow extends React.Component {
     this.state = {
       loading: true, 
       oneDay: false,
-      oneWeek: false, 
+      oneWeek: true, 
       oneMonth: false,
       threeMonth: false, 
-      oneYear: true, 
+      oneYear: false, 
       all: false, 
       stockData: {},
       stockChartData: {},
@@ -50,47 +50,17 @@ class StockShow extends React.Component {
         this.getChart();
         this.setState({ loading: false})
       })
-    // this.getStock()
-    // this.getChart()
-    // this.setState({ loading: false })
   }
-
-  // componentDidMount() {
-  //   if (this.props.currentUser) {
-  //     this.props.requestHoldings()
-  //       .then(() => {
-  //         let networth = parseInt(this.props.currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-  //         this.getStocks();
-  //         this.setState({ networth: networth })
-  //       });
-  //     this.props.requestWatchListItems()
-  //       .then(() => {
-  //         this.getWatchlistItems();
-  //       });
-  //   }
-  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.symbol !== this.props.match.params.symbol) {
+      console.log(prevProps);
+      console.log(this.props);
       // this.props.fetchStock(this.props.match.params.symbol)
       //   .then(() => this.setState({ loading: false }));
-      this.getStock();
+      Promise.all([this.setState({loading: false, stockLoaded: false, chartLoaded: false}), this.getStock(), this.getChart()])
+        .then(() => this.setState({ loading: false }))
     }
-
-  //   if (this.state.oneDay !== prevState.oneDay) {
-  //     this.getStock()
-
-  //   }
-  //   if (this.state.oneWeek !== prevState.oneWeek) {
-  //     this.getStock()
-  //   }
-  //   if (this.state.oneMonth !== prevState.oneMonth) {
-  //     this.getStock()
-  //   }
-  //   if (this.state.oneYear !== prevState.oneYear) {
-  //     this.getStock()
-  //   }
-    
   }
 
   toggleDayState() {
@@ -280,7 +250,7 @@ class StockShow extends React.Component {
       timePeriod = '1y'
     }
 
-    fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbol}&types=chart,stats&range=${timePeriod}&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
+    return fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbol}&types=chart,stats&range=${timePeriod}&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
       .then((result) => result.json())
       .then((result) => {
         this.setState({ stockChartData: result, chartLoaded: true});
@@ -308,7 +278,7 @@ class StockShow extends React.Component {
       timePeriod = '1y'
     }
 
-    fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbol}&types=quote,news,stats,company&range=${timePeriod}&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
+    return fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbol}&types=quote,news,stats,company&range=${timePeriod}&last=5&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
       .then((result) => result.json())
       .then((result) => {
         this.setState({ stockData: result, stockLoaded: true });
@@ -325,34 +295,53 @@ class StockShow extends React.Component {
     let stockChart;
     let list;
 
-    if (!this.state.chartLoaded) {
+    let stock = this.state.stockData[this.props.match.params.symbol];
+    
+
+    if (!this.state.chartLoaded || !this.state.stockChartData[this.props.match.params.symbol]) {
       stockChart = <div className="loader-container"><div className="loader"></div></div>
     }
     // let divYield = parseInt(this.props.stock.dividend_yield * 100)).toFixed(2);
-    if (this.state.loading || !this.state.stockLoaded) {
+    if (this.state.loading || !this.state.stockLoaded || !stock) {
       return <div className="loader-container"><div className="loader"></div></div>
     }
+    
+    let chart;
 
-
-
-    // console.log(this.state);
-
-    let chart = this.state.stockChartData[this.props.match.params.symbol];
-    let stock = this.state.stockData[this.props.match.params.symbol];
+    if (this.state.stockChartData[this.props.match.params.symbol]) {
+      chart = this.state.stockChartData[this.props.match.params.symbol];
+    }
+   
+    // let stock = this.state.stockData[this.props.match.params.symbol];
     let quote = this.state.stockData[this.props.match.params.symbol].quote;
     let stats = this.state.stockData[this.props.match.params.symbol].stats;
     let company = this.state.stockData[this.props.match.params.symbol].company;
     let news = stock.news;
     // console.log(this.state.stockData[this.props.match.params.symbol].quote);
     // console.log(stock);
-    let employees = company.employees.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    // let employees = parseInt(company.employees).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    let marketCap = parseFloat((quote.marketCap) / 1000000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    let employees = company.employees;
+    let marketCap = quote.marketCap;
+    let avgVol = quote.avgTotalVolume;
+    let lateVol = quote.latestVolume;
 
-    let avgVol = (quote.avgTotalVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    let lateVol = (quote.latestVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    // let threeMonth = this.props.stock.one_year_chart.slice(200) || null;
-    // let oneWeek = this.props.stock.company_chart.slice(this.props.stock.company_chart.length - 5) || null;
+    if (company) {
+      employees = company.employees.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    if (quote) {
+      marketCap = parseFloat((quote.marketCap) / 1000000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      avgVol = (quote.avgTotalVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      lateVol = (quote.latestVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+
+
+
+    // let employees = parseInt(company.employees).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+    // let marketCap = parseFloat((quote.marketCap) / 1000000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    // let avgVol = (quote.avgTotalVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    // let lateVol = (quote.latestVolume / 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
     let data2;
 
     if (this.state.oneDay) {
@@ -371,11 +360,8 @@ class StockShow extends React.Component {
       data2 = Array.apply(null, Array(5)).map(function () { return { average: 0} }); 
     }
 
-    // console.log(stock);
-    // console.log(chart);
-    // console.log(news);
-
-    if (this.state.chartLoaded) {
+   
+    if (this.state.chartLoaded && (chart === this.state.stockChartData[this.props.match.params.symbol])) {
       if (this.state.oneDay) {
         chart.chart.forEach((datapoint, i) => {
           if (i % 5 === 0) {
@@ -389,15 +375,13 @@ class StockShow extends React.Component {
           data2[i].average = datapoint.close;
         })
       }
-
-    }
- 
+    } 
 
     let stroke = '#21ce99';
 
     // console.log(data2);
     let data4 = [];
-    if (this.state.chartLoaded) {
+    if (this.state.chartLoaded && this.state.stockData[this.props.match.params.symbol]) {
       let sum = 0;
       let sumsq = 0
       data2.map((datapoint, idx) => {

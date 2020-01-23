@@ -267,7 +267,9 @@
   width: 100%;
   font-size: 16px;
   background-color: #21ce99;
-  border: 1px solid black;
+  box-shadow: 1px 1px 22px -7px lightgrey;
+    /* border: 1px solid lightgrey; */
+  border-radius: 5px;
 }
 
 .stock-interaction-2 form {
@@ -298,7 +300,9 @@
     background: #21ce99;
     color: white;
     font-size: 16px;
-    border: 1px solid black;
+    box-shadow: 1px 1px 22px -7px lightgrey;
+    /* border: 1px solid lightgrey; */
+    border-radius: 5px;
 }
 
 .stock-interaction label {

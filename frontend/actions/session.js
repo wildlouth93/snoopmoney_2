@@ -37,9 +37,9 @@ export const createNewUser = formUser => dispatch => (
 
 export const login = formUser => dispatch => (
   postSession(formUser).then(user => (dispatch(receiveCurrentUser(user))
-  ), error => (
-    dispatch(receiveErrors(error.responseJSON))
-  ))
+  ), error => {
+    return dispatch(receiveErrors(error.responseJSON))
+  })
 );
 
 export const logout = () => dispatch => deleteSession()

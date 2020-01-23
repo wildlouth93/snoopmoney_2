@@ -8,10 +8,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
     # @tickers = @user.tickers 
     # array of tickers 
-    @watchlistitems = @user.watch_list_items;
-    @holdings = @user.holdings; 
-
-    client = Client.new
+   
     # @tickers.map do |ticker| 
     #   client.get_quote(ticker)
     # end
@@ -19,6 +16,9 @@ class Api::SessionsController < ApplicationController
     if @user.nil? 
       render json: ['Wrong credentials. Try again!'], status: 401
     else 
+      @watchlistitems = @user.watch_list_items;
+      @holdings = @user.holdings; 
+      client = Client.new
       login!(@user)
       render 'api/users/show'  
     end

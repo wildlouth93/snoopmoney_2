@@ -11,9 +11,9 @@ class MainChartDiv extends React.Component {
       loading: true,
       stockData2: {},
       oneDay: false,
-      fiveDay: false, 
+      fiveDay: true, 
       oneMonth: false, 
-      oneYear: true
+      oneYear: false
     }
 
     this.toggleOneDay = this.toggleOneDay.bind(this);
