@@ -10,7 +10,6 @@ export default class MiniChart extends PureComponent {
     // if (this.props.data[0].average || this.props.data[0].average < this.props.data[this.props.data.length - 1].average) {
     //   stroke = 'red';
     // } 
-    // console.log(this.props.data)
     return (
       <LineChart width={40} height={40} data={this.props.data}>
         {/* <YAxis type="number" domain={['dataMin', 'dataMax']} hide={true} /> */}

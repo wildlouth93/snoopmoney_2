@@ -12,8 +12,6 @@ export default class StockChart extends PureComponent {
     // if (this.props.data[0] < this.props.data[this.props.data.length-1]) {
     //   stroke = 'red';
     // } 
-    // console.log(this.props.data);
-    // console.log(this.props);
 
     return (
       <LineChart

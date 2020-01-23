@@ -27,7 +27,6 @@ class Login extends React.Component {
   }
 
   renderErrors() {
-    console.log(this.props.errors);
     return (
       <ul className="errors-pop-up">
         {

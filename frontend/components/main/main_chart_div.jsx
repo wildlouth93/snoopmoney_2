@@ -106,7 +106,6 @@ class MainChartDiv extends React.Component {
       symbols.push(holding.ticker.toLowerCase())
     })
     symbols = symbols.join(',');
-    // console.log(symbols);
     let timePeriod;
     if (this.state.oneDay) {
       timePeriod = '1d'
@@ -124,8 +123,6 @@ class MainChartDiv extends React.Component {
       timePeriod = '1y'
     }
 
-    // console.log("API start")
-
     fetch(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symbols}&types=chart&range=${timePeriod}&token=pk_c0d9b6069cf349fbb1fc607a8f129ff9`)
       .then((result) => result.json())
       .then((result) => {
@@ -135,16 +132,11 @@ class MainChartDiv extends React.Component {
 
   render() {
 
-    // console.log(this.props);
-
     if (this.state.loading) {
       return <div className="main-charts">
         <div className="loader-container"><div className="loader"></div></div>
       </div>
     }
-
-    // console.log(this.state);
-    // console.log(this.state.stockData2);
 
     const { holdings, currentUser } = this.props;
 
@@ -171,19 +163,9 @@ class MainChartDiv extends React.Component {
     // if (this.state.fiveDay) {
     //   data2 = Array.apply(null, Array(5)).map(function () { return { average: 0} }); 
     // }
-    
-
-    // console.log('data2');
-    // console.log(data2)
-
-    // let data2 = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
-
-    // debugger;
-    console.log(Object.values(this.state.stockData2));
 
     Object.values(this.state.stockData2).map((stock, i) => {
 
-      // console.log(stock);
       stock.chart.map((datapoint, idx) => {
         // data2[idx].average += (datapoint.average * holdings[stock.ticker].num_shares)
         if (this.state.oneDay && idx % 5 === 0) {
@@ -209,15 +191,11 @@ class MainChartDiv extends React.Component {
       })
     })
 
-    // console.log(data2);
 
     let data4 = [];
     let sum = 0;
     let sumsq = 0
     data2.map((datapoint, idx) => {
-      // debugger;
-      // console.log(typeof datapoint.average);
-      // console.log(typeof currentUser.account_balance);
       datapoint.average = datapoint.average + parseInt(currentUser.account_balance);
      
       sum += datapoint.average;
@@ -237,23 +215,12 @@ class MainChartDiv extends React.Component {
         sdValue = 20;
       }
 
-      // console.log(mean);
-
       if (datapoint.average > mean - (sdValue * sd) && datapoint.average < mean + (sdValue *sd)) {
         datapoint.average = parseInt(datapoint.average).toFixed(2); 
         datapoint.label = datapoint.label
         data4.push(datapoint)
       }
     })
-
-    // if (this.state.timePeriod === '5d') {
-    //   console.log(data2);
-    //   console.log(data4);
-    //   // data4 = data2;
-    // }
-
-    // console.log('data4');
-    // console.log(data4);
 
     let stockChart;
     let listItems;

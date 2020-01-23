@@ -65,12 +65,10 @@ class AccountShow extends React.Component {
     holdings.map((holding, i) => {
       let price1 = this.state.stockData[holding.ticker].quote.latestPrice;
       data4[i] = { name: holding.ticker, value: (price1 * holding.num_shares) }
-      console.log(price1);
       if (price1 < holding.cost_basis) {
         stroke[i] = 'red';
       }
     });
-    console.log(stroke);
 
     return (
       <div className="account-show">
@@ -131,7 +129,6 @@ class AccountShow extends React.Component {
                 <tbody>
                   {
                     holdings.map((holding, i) => {
-                      // console.log(stocks[i].latestPrice);
                       let price = this.state.stockData[holding.ticker].quote.latestPrice;
                       let holdingPrice = parseInt(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                       let averageCost = parseInt(holding.cost_basis).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');

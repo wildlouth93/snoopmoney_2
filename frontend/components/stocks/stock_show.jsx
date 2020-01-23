@@ -54,8 +54,6 @@ class StockShow extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.symbol !== this.props.match.params.symbol) {
-      console.log(prevProps);
-      console.log(this.props);
       // this.props.fetchStock(this.props.match.params.symbol)
       //   .then(() => this.setState({ loading: false }));
       Promise.all([this.setState({loading: false, stockLoaded: false, chartLoaded: false}), this.getStock(), this.getChart()])
@@ -154,40 +152,28 @@ class StockShow extends React.Component {
 
   handleBuySubmit(e) {
     e.preventDefault();
-    // console.log(this.state);
     let info1 = e.currentTarget.form.elements[0];
     let info2 = e.currentTarget.form.elements[1];
     let info3 = e.currentTarget.form.elements[2];
-    console.log(info1)
-    console.log(info2)
-    console.log(info3)
 
     let potentialHolding = { num_shares: parseInt(info3.value),
       ticker: info2.value ,
       cost_basis: parseFloat(info1.value),
     }
-    console.log(potentialHolding)
-    // debugger;
     this.props.createHolding(potentialHolding)
   }
 
   handleSellSubmit(e) {
     e.preventDefault();
-    // console.log(this.state);
     let info1 = e.currentTarget.form.elements[0];
     let info2 = e.currentTarget.form.elements[1];
     let info3 = e.currentTarget.form.elements[2];
-    console.log(info1)
-    console.log(info2)
-    console.log(info3)
 
     let potentialHolding = {
       num_shares: parseInt(info3.value),
       ticker: info2.value,
       cost_basis: parseFloat(info1.value),
     }
-    console.log(potentialHolding)
-    // debugger;
     this.props.deleteHolding(potentialHolding.ticker)
   }
 
@@ -199,8 +185,6 @@ class StockShow extends React.Component {
     let potentialWLI = {
         ticker: info1.value
     }
-    console.log(potentialWLI);
-    // console.log(info2);
     this.props.createWatchListItem(potentialWLI)
   }
 
@@ -210,7 +194,6 @@ class StockShow extends React.Component {
     let potentialWLI = {
       ticker: info1.value
     }
-    console.log(potentialWLI)
     this.props.deleteWatchListItem(potentialWLI.ticker)
   }
 
@@ -289,9 +272,6 @@ class StockShow extends React.Component {
 
   render(){ 
 
-    // console.log(this.props);
-    
-    console.log(this.state);
     let stockChart;
     let list;
 
@@ -317,8 +297,6 @@ class StockShow extends React.Component {
     let stats = this.state.stockData[this.props.match.params.symbol].stats;
     let company = this.state.stockData[this.props.match.params.symbol].company;
     let news = stock.news;
-    // console.log(this.state.stockData[this.props.match.params.symbol].quote);
-    // console.log(stock);
     let employees = company.employees;
     let marketCap = quote.marketCap;
     let avgVol = quote.avgTotalVolume;
@@ -379,15 +357,11 @@ class StockShow extends React.Component {
 
     let stroke = '#21ce99';
 
-    // console.log(data2);
     let data4 = [];
     if (this.state.chartLoaded && this.state.stockData[this.props.match.params.symbol]) {
       let sum = 0;
       let sumsq = 0
       data2.map((datapoint, idx) => {
-        // debugger;
-        // console.log(typeof datapoint.average);
-        // console.log(typeof currentUser.account_balance);
         // datapoint.average = datapoint.average;
 
         sum += datapoint.average;
@@ -407,8 +381,6 @@ class StockShow extends React.Component {
           sdValue = 5;
         }
 
-        // console.log(mean);
-
         if (datapoint.average > mean - (sdValue * sd) && datapoint.average < mean + (sdValue * sd)) {
           datapoint.average = parseInt(datapoint.average).toFixed(2);
           datapoint.label = datapoint.label
@@ -421,9 +393,6 @@ class StockShow extends React.Component {
       }
     }
     
-
-    console.log(data2);
-    console.log(data4);
 
     // let stockChart;
     // let list; 
@@ -524,11 +493,6 @@ class StockShow extends React.Component {
       }
     })
 
-    console.log(inHoldings);
-    // console.log(stockHolding);
-    console.log(inWatchList);
-    // console.log(stockWLI);
-
     let holdingForm;
     let watchlistForm;
 
@@ -624,10 +588,6 @@ class StockShow extends React.Component {
         <button onClick={this.handleRemoveWLI}>Remove from WatchList</button>
       </form>
     }
-
-    // window.holdings = this.props.holdings;
-    // console.log(this.props.holdings);
-    // console.log(this.props.watchlistitems);
 
     return (
       <div className="stock-show">

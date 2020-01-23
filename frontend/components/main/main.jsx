@@ -52,30 +52,7 @@ class Main extends React.Component {
           this.getWatchlistItems();
         });
     }
-  }
-
-  // getNews() {
-  //   let stockSymbols = [];
-  //   this.props.watchlistitems.map((watchlistitem, i) => (
-  //     stockSymbols.push(watchlistitem.ticker.toLowerCase())
-  //   ));
-  //   stockSymbols = stockSymbols.join(',');
-  //   console.log(stockSymbols);
-  //   // console.log(this.props.watchlistitems);
-  //   // console.log(stockSymbols);
-    
-  //   let stockSymbol = 'AAPL'
-  //   let API_Key = 'Hf0MMau5ZrxHPGQ50amdyul8TxL7fixY';
-  //   // let data; 
-
-  //   fetch(`https://api.unibit.ai/v2/company/news?tickers=${stockSymbols}&accessKey=${API_Key}`)
-  //     .then((result) => result.json())
-  //     .then((result) => {
-  //       this.setState({ stockNews: result.result_data, loading: false });
-  //     })
-  // }
-
-  
+  }  
 
   getStocks() {
     let symbols = [];
@@ -110,10 +87,6 @@ class Main extends React.Component {
 
   // Tpk_8945ca6a137b40068a66f5257e5ac120
   render() {
-    // console.log(this.state.stockNews);
-    // console.log(Object.values(this.state.stockData));
-    // console.log(this.state.stockData);
-
     const { currentUser, logout, holdings, watchlistitems, stocks } = this.props;
   
     if (!currentUser) {
@@ -134,20 +107,12 @@ class Main extends React.Component {
         newsItemsArr.push(newsItem);
       })
     })
-    console.log(newsItemsArr);
-    window.stockData = this.state.stockData;
     
-    
-    // console.log(watchlistitems);
-    // console.log(this.state);
-
     
 
     // let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let data2 = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
     // let miniData = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
-    // console.log('WatchList Data');
-    // console.log(this.state.watchlistData);
 
     Object.values(this.state.watchlistData).map((stock, i) => {
       watchlistitems[i].price = stock.quote.latestPrice.toFixed(2);
@@ -168,9 +133,7 @@ class Main extends React.Component {
     })
 
     Object.values(this.state.stockData).map((stock, i) => {
-      // console.log(stock);
       // holdings[i].oneDayChart = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 
-      // console.log(stock);
       holdings[i].price = stock.quote.latestPrice.toFixed(2);
         holdings[i].oneDayChange = (stock.quote.changePercent * 100).toFixed(2);
       holdings[i].oneDayChart = Array.apply(null, Array(39)).map(function () { return { average: 0 } });
@@ -196,14 +159,11 @@ class Main extends React.Component {
       })
     })
 
-    // console.log(holdings);
 
     let data3 = [];
     let sum = 0;
     let sumsq = 0
     data2.map((datapoint, idx) => {
-      // console.log(typeof datapoint.average);
-      // console.log(typeof currentUser.account_balance);
       datapoint.average = datapoint.average + parseInt(currentUser.account_balance);
      
       sum += datapoint.average;
@@ -212,8 +172,6 @@ class Main extends React.Component {
       let mean = sum / (idx + 1);
       let variance = sumsq / (idx+1) - (mean * mean);
       let sd = Math.sqrt(variance);
-
-      // console.log(mean);
 
       if (datapoint.average > mean - (1 * sd) && datapoint.average < mean + (1 *sd)) {
         datapoint.average = parseInt(datapoint.average).toFixed(2);
@@ -244,8 +202,6 @@ class Main extends React.Component {
     // }
 
     mainChart = <MainChartDiv currentUser={this.props.currentUser} holdings={this.props.holdings} />
-
-    console.log(holdings);
 
     const main = currentUser ? (
       <div>
