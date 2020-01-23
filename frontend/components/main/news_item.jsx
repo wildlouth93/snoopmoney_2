@@ -4,7 +4,7 @@ import watchListItemsReducer from '../../reducers/watchlistitems';
 
 const NewsItem = ({ newsItem, watchlistitem }) => (
   <li className="news-item">
-    <Link to={`${newsItem.url}`}>
+    <a href={`${newsItem.url}`}>
       <div>
         <div className="news-content">
         <h5>{newsItem.source} 1d</h5>
@@ -21,7 +21,7 @@ const NewsItem = ({ newsItem, watchlistitem }) => (
         </div>
       
       </div>
-    </Link>
+    </a>
   </li>
 )
 

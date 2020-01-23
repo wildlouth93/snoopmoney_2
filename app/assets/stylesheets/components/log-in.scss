@@ -93,9 +93,13 @@
 }
 
 .log-in-form .errors-pop-up { 
-  background-color: #ff9999;
+  // background-color: #ff9999;
   outline: 0; 
-  width: 60%;
-  color: white; 
+  width: 80%;
+  color: #ff9999; 
   border-radius: 5px;
+  // border: 1px solid #ff9999;
+  // background: lightgray;
+  font-size: 20px;
+  padding-left: 10px;
 }
