@@ -261,10 +261,12 @@
 
 .stock-interaction-2 button {
   height: 100%;
-  border: 1px solid green;
-  color: green;
+  border: 1px solid #21ce99;
+  color: white;
   width: 100%;
   font-size: 16px;
+  background-color: #21ce99;
+  border: 1px solid black;
 }
 
 .stock-interaction-2 form {
@@ -292,9 +294,10 @@
     /* margin-right: auto; */
     margin-right: 10%;
     height: 50px;
-    background: green;
+    background: #21ce99;
     color: white;
     font-size: 16px;
+    border: 1px solid black;
 }
 
 .stock-interaction label {

@@ -11,11 +11,11 @@ class StockShow extends React.Component {
     super(props)
     this.state = {
       loading: true, 
-      oneDay: true,
+      oneDay: false,
       oneWeek: false, 
       oneMonth: false,
       threeMonth: false, 
-      oneYear: false, 
+      oneYear: true, 
       all: false, 
       stockData: {},
       stockChartData: {},
@@ -396,10 +396,50 @@ class StockShow extends React.Component {
     let stroke = '#21ce99';
 
     // console.log(data2);
+    let data4 = [];
+    if (this.state.chartLoaded) {
+      let sum = 0;
+      let sumsq = 0
+      data2.map((datapoint, idx) => {
+        // debugger;
+        // console.log(typeof datapoint.average);
+        // console.log(typeof currentUser.account_balance);
+        // datapoint.average = datapoint.average;
 
-    if (data2[0].average > data2[data2.length-1].average) {
-      stroke = 'red'
+        sum += datapoint.average;
+        sumsq += (datapoint.average * datapoint.average)
+
+        let mean = sum / (idx + 1);
+        let variance = sumsq / (idx + 1) - (mean * mean);
+        let sd = Math.sqrt(variance);
+
+        let sdValue = 3;
+
+        if (this.state.oneDay) {
+          sdValue = 1;
+        }
+
+        if (this.state.oneWeek) {
+          sdValue = 5;
+        }
+
+        // console.log(mean);
+
+        if (datapoint.average > mean - (sdValue * sd) && datapoint.average < mean + (sdValue * sd)) {
+          datapoint.average = parseInt(datapoint.average).toFixed(2);
+          datapoint.label = datapoint.label
+          data4.push(datapoint)
+        }
+      })
+
+      if (data4[0].average > data4[data4.length - 1].average) {
+        stroke = 'red'
+      }
     }
+    
+
+    console.log(data2);
+    console.log(data4);
 
     // let stockChart;
     // let list; 
@@ -408,8 +448,9 @@ class StockShow extends React.Component {
     //   stockChart = <div className="loader-container"><div className="loader"></div></div>
     // }
 
+
     if (this.state.oneDay) {
-      stockChart = <StockChart data={data2} dataKey="average" stroke={stroke} name="Price"/>
+      stockChart = <StockChart data={data4} dataKey="average" stroke={stroke} name="Price"/>
       list = <ul>
         <li className="selected" onClick={this.toggleDayState}>1D</li>
         <li onClick={this.toggleWeekState}>1W</li>
@@ -421,7 +462,7 @@ class StockShow extends React.Component {
     }
 
     if (this.state.oneWeek) {
-      stockChart = <StockChart data={data2} dataKey="average" stroke={stroke} name="Price" />
+      stockChart = <StockChart data={data4} dataKey="average" stroke={stroke} name="Price" />
       list = <ul>
         <li onClick={this.toggleDayState}>1D</li>
         <li className="selected" onClick={this.toggleWeekState}>1W</li>
@@ -433,7 +474,7 @@ class StockShow extends React.Component {
     }
 
     if (this.state.oneMonth) {
-      stockChart = <StockChart data={data2} dataKey="average" stroke={stroke} name="Price"/>
+      stockChart = <StockChart data={data4} dataKey="average" stroke={stroke} name="Price"/>
           list = <ul>  
         <li onClick={this.toggleDayState}>1D</li>
         <li onClick={this.toggleWeekState}>1W</li>
@@ -457,7 +498,7 @@ class StockShow extends React.Component {
     // }
 
     if (this.state.oneYear) {
-      stockChart = <StockChart data={data2} dataKey="average" stroke={stroke} name="Price"/>
+      stockChart = <StockChart data={data4} dataKey="average" stroke={stroke} name="Price"/>
           list = <ul>  
         <li onClick={this.toggleDayState}>1D</li>
         <li onClick={this.toggleWeekState}>1W</li>
