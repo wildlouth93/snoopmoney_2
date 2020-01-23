@@ -113,6 +113,19 @@ class Main extends React.Component {
     // console.log(this.state.stockNews);
     // console.log(Object.values(this.state.stockData));
     // console.log(this.state.stockData);
+    if (!currentUser) {
+      return <MainOut />
+    }
+
+    const { currentUser, logout, holdings, watchlistitems, stocks } = this.props; 
+
+    if (holdings.length === 0) return null;
+    if (watchlistitems.length === 0) return null;
+
+    if (this.state.loading || !this.state.networth) {
+      return <div className="loader-container"><div className="loader"></div></div>
+    }
+
     let newsItemsArr = [];
     Object.values(this.state.stockData).forEach((stock, i) => {
       // newsItemsArr.push(stock.news[i])
@@ -123,20 +136,11 @@ class Main extends React.Component {
     console.log(newsItemsArr);
     window.stockData = this.state.stockData;
     
-    const { currentUser, logout, holdings, watchlistitems, stocks} = this.props; 
+    
     // console.log(watchlistitems);
     // console.log(this.state);
 
-    if (!currentUser) {
-      return <MainOut />
-    }
-
-    if (holdings.length === 0) return null;
-    if (watchlistitems.length === 0) return null; 
-
-    if (this.state.loading || !this.state.networth)  {
-      return <div className="loader-container"><div className="loader"></div></div>
-    }
+    
 
     // let networth = parseInt(currentUser.net_worth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     let data2 = Array.apply(null, Array(78)).map(function () { return { average: 0 } }); 

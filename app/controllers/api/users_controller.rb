@@ -8,8 +8,14 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save 
+      Holding.create( user_id: @user.id, ticker: 'MSFT', num_shares: 1, cost_basis: 50);
+      Holding.create( user_id: @user.id, ticker: 'AMZN', num_shares: 1, cost_basis: 50);
+      WatchListItem.create( user_id: @user.id, ticker: 'FB');
+      WatchListItem.create( user_id: @user.id, ticker: 'AMZN');
+
       login!(@user)
       @user.net_worth = @user_account_balance 
+      
       render :show 
     else   
       render json: @user.errors.full_messages, status: 422
