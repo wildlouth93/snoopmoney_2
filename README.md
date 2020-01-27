@@ -53,4 +53,4 @@ This project was designed and built in under two weeks.
 
 #### Notes
 
-1. **Name.** Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
+**Name.** Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
