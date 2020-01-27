@@ -2,7 +2,7 @@
 
 [Live Link](https://snoopmoney.herokuapp.com/#/)
 
-Welcome to SnoopMoney, a single-page clone of Robinhood. This app uses Rails and PostgreSQL on the backend, and uses React and Rails on the frontend. Combining these libraries with an external Stock API, users can see in real-time the performance of stocks the user currently owns or watches.  
+Welcome to SnoopMoney, a single-page clone of Robinhood. This app uses Rails and PostgreSQL on the backend, and uses React and Redux on the frontend. Combining these libraries with an external Stock API, users can see in real-time the performance of stocks the user currently owns or watches.  
 
 This project was designed and built in under two weeks. 
 
