@@ -17,16 +17,16 @@ This project was designed and built in under two weeks.
 ### Dashboard
 * In the dashboard, users can view their portfolio performance. Additionally, users can see news related to companies in the users watchlist. 
 * In the dashboard, users have access to a scrollable box which contains the user's stock that they currently own or are watching. 
-* From the box, users can click the stock symbol which takes the user to stock's show page.
+* From the box, users can click the individual stock section which takes the user to stock's show page.
 * **Highlighted Feature: Scrollable Stock and Watchlist Box:** 
 
 ![](https://user-images.githubusercontent.com/29221213/69449270-263f0400-0d20-11ea-86d1-8f9340a67dbf.png)
 
 ### Stock Page
 
-* The stock show page shows the stock's current price. It also shows a graph which shows the stock's performance for the day. 
+* The stock show page shows the stock's current price. It also shows a graph which shows the stock's performance for the selected time period. 
 * On the stock show page, the about section tells about the company's key statistics.  
-* **Highlighted Feature: Stock Graph:** 
+* **Highlighted Feature: Interactive Stock Graph:** 
 
 ![](https://user-images.githubusercontent.com/29221213/69449274-29d28b00-0d20-11ea-9e70-9ff4edb3135f.png)
 
@@ -52,6 +52,5 @@ This project was designed and built in under two weeks.
 ![](https://user-images.githubusercontent.com/29221213/69449273-2808c780-0d20-11ea-88be-6c0b08498ecc.png)
 
 #### Notes
-1. **API Test Issues.** Issues exist with some of the information being passed from the API for the news feed and about section. The logic for dynamic interaction exists, but because the API is only a test version, I was required to hard-code in certain information for visual purposes.
 
-2. **Name.** Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
+1. **Name.** Check out this article if you're curious why the app is named [SnoopMoney.](https://money.cnn.com/2014/09/23/investing/jared-leto-snoop-dogg-nas-robinhood-trading-app/index.html)
