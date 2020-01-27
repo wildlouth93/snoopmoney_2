@@ -44,7 +44,7 @@ This project was designed and built in under two weeks.
 
 ![](https://user-images.githubusercontent.com/29221213/73210391-ce51be80-410f-11ea-9fb0-140584748ebd.png)
 
-![](https://user-images.githubusercontent.com/29221213/69453158-ef212080-0d28-11ea-8f28-3b800f8a7bd2.png)
+![](https://user-images.githubusercontent.com/29221213/73210417-df9acb00-410f-11ea-92d5-dcef1032f33d.png)
 
 ![](https://user-images.githubusercontent.com/29221213/69449277-2b03b800-0d20-11ea-997e-fbf334106ed6.png)
 
