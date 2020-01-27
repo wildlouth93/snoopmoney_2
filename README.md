@@ -6,7 +6,7 @@ Welcome to SnoopMoney, a single-page clone of Robinhood. This app uses Rails and
 
 This project was designed and built in under two weeks. 
 
-![](https://user-images.githubusercontent.com/29221213/69450047-dc571d80-0d21-11ea-9b9f-e9e1e535d92b.png)
+![](https://user-images.githubusercontent.com/29221213/73210814-a747bc80-4110-11ea-8a2a-5ecc08b104d2.png)
 
 ## Features
 * User Authentication using BCrypt
