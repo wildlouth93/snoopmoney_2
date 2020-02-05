@@ -12,8 +12,8 @@ class StockShow extends React.Component {
     this.state = {
       loading: true, 
       oneDay: false,
-      oneWeek: true, 
-      oneMonth: false,
+      oneWeek: false, 
+      oneMonth: true,
       threeMonth: false, 
       oneYear: false, 
       all: false, 

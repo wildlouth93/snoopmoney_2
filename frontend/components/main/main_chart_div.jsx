@@ -11,8 +11,8 @@ class MainChartDiv extends React.Component {
       loading: true,
       stockData2: {},
       oneDay: false,
-      fiveDay: true, 
-      oneMonth: false, 
+      fiveDay: false, 
+      oneMonth: true, 
       oneYear: false
     }
 
@@ -147,11 +147,6 @@ class MainChartDiv extends React.Component {
       data2 = Array.apply(null, Array(78)).map(function () { return { average: 0} }); 
     }
 
-    // 78
-    // 253
-    // 22
-    // 5
-
     if (this.state.oneYear) {
       data2 = Array.apply(null, Array(253)).map(function () { return { average: 0} }); 
     }
@@ -160,14 +155,9 @@ class MainChartDiv extends React.Component {
       data2 = Array.apply(null, Array(22)).map(function () { return { average: 0} }); 
     }
 
-    // if (this.state.fiveDay) {
-    //   data2 = Array.apply(null, Array(5)).map(function () { return { average: 0} }); 
-    // }
-
+    
     Object.values(this.state.stockData2).map((stock, i) => {
-
       stock.chart.map((datapoint, idx) => {
-        // data2[idx].average += (datapoint.average * holdings[stock.ticker].num_shares)
         if (this.state.oneDay && idx % 5 === 0) {
           data2[idx/5].label = datapoint.label;
           data2[idx/5].average += ((datapoint.average) * holdings[i].num_shares);
@@ -181,10 +171,6 @@ class MainChartDiv extends React.Component {
           data2[idx].average += ((datapoint.close) * holdings[i].num_shares);
         }
         if (this.state.fiveDay) {
-          // debugger;
-          if (!data2[idx]) {
-            debugger;
-          }
           data2[idx].label = datapoint.label;
           data2[idx].average += ((datapoint.close) * holdings[i].num_shares);
         }
